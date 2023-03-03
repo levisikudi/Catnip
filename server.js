@@ -6,6 +6,13 @@ const logger = require('morgan')
 const cors = require('cors')
 
 
+//models
+const User = require('./models/userModel.js')
+const Cat = require('./models/catModel')
+const Chat = require('./models/chatModel.js')
+const Message = require('./models/messajeModel.js')
+
+
 // configs
 require('dotenv').config();
 require('./config/database.js');
@@ -30,6 +37,29 @@ app.use(express.json())
 // serve our build folder
 app.use(express.static(path.join(__dirname, 'build')))
 
+//routes
+app.post('/users/signup',async (req, res) => {
+
+    const {firstname, lastname, description, email, password, gender, picture, location } = req.body
+    let user = await User.create({
+       firstname, lastname, description, email, password, gender, picture, location 
+    })
+    
+
+    if (user){
+        res.status(201).json({
+            _id: user._id,
+            name: user.firstname,
+            location: user.location
+        })
+    }else{
+        res.status(400)
+        throw new Error('Failed to create user')
+    }
+
+    // sending user response after creation or login
+    res.json("user created")
+});
 
 
 

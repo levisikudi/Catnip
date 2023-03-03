@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-let connectionString = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@mongosetupcluster.ztodsr1.mongodb.net/Catnip?retryWrites=true&w=majority`
+let connectionString = `mongodb+srv://${process.env.MONGOUSERNAME}:${process.env.MONGOPASSWORD}@catnip.utaenzj.mongodb.net/Catnip?retryWrites=true&w=majority`
 
 mongoose.set('strictQuery', false);
 
@@ -10,7 +10,7 @@ mongoose.connect(connectionString, {
     useUnifiedTopology: true,
   });
 
-  
+
 // function will activate once to let us know we are connected
 mongoose.connection.once('open', ()=> {
     console.log('connected to mongo');

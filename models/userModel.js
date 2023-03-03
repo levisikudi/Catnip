@@ -1,35 +1,54 @@
  const mongoose = require('mongoose')
 
  const userSchema = mongoose.Schema({
-     username: {
+     firstname: {
          type: String,
          required: true
      },
+
+     lastname: {
+         type: String,
+         required: true
+     },
+
+     description: {
+        type: String,
+        required: true
+     },
+
      email: {
          type: String,
          required: true,
          unique: true
      },
+
      password: {
          type: String,
          required: true,
          minLength: 6
      },
+
+     gender: {
+        type: String,
+        required: true
+     },
+
      picture:{
         type: String,
         required: true,
         default: 'jjf'
      },
+
      location: {
         type: String,
         required: true,
      },
+
      cat: {
-        type: Schema.Types.ObjectId , 
+        type: mongoose.Schema.Types.ObjectId , 
         ref: 'Cat'
      }
-     
- }, 
+    }, 
     {timestamps:true}
  )
 
