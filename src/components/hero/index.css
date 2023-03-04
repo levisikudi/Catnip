@@ -1,0 +1,16 @@
+header{
+    background: white url("../../cats/hero-cat.png") no-repeat center center;
+    background-size: cover;
+    color: white;
+}
+.color-overlay{
+    min-height: 96vh;
+    background-color: rgba(243, 111, 111, 0.4);
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
