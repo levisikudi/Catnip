@@ -14,7 +14,6 @@ const Hero = () => {
             <button className='btn btn-success text-white col-12'>Login with Guest Credentials</button>
           </div>
         </div>
-
       </div>
 
    </header>
