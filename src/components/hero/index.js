@@ -13,7 +13,7 @@ const Hero = () => {
       <div className='color-overlay d-flex justify-content-center align-items-center'>
         <div className='content'>
         {showLogin?
-        <Login />
+        <Login setShowLogin={setShowLogin}/>
         :
         <HeroContent setShowLogin={setShowLogin} />
         }   
