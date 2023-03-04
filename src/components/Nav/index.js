@@ -1,7 +1,11 @@
 import React from 'react'
+import { Link , useLocation } from 'react-router-dom'
 import './index.css'
 
 const Nav = () => {
+
+  const location = useLocation().pathname;
+
   return (
     <nav id="navbar" className="navbar navbar-expand-md sticky-top navbar-dark bg-black  ">
         <div className="container ">
@@ -11,12 +15,17 @@ const Nav = () => {
             </button>
             <div className="collapse navbar-collapse justify-content-end" id="expandation">
                 <ul className="navbar-nav navbar-nav-scroll">
-                  
-                    <li className="nav-item mx-4"><a href="#hero-section" className="nav-link">Home</a></li>
-                    <li className="nav-item mx-4"><a href="#testimonials" className="nav-link">Testimonials</a></li>
-                    <li className="nav-item mx-4"><a href="#features" className="nav-link">Features</a></li>
-                    <li className="nav-item mx-4"><a href="#footer" className="nav-link">Links</a></li>
-                    <button type="submit" class="btn btn-success col">Sign Up</button>
+
+                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Home</Link></li>
+                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Testimonials</Link></li>
+                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Features</Link></li>
+                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Links</Link></li>
+                    {location === '/signup'?
+                    <></>
+                    :
+                    <Link to="/signup" className="btn btn-success ">Sign Up</Link>
+                    }
+
 
                 </ul> 
             </div>       
