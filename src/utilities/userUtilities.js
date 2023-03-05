@@ -10,3 +10,13 @@ export const signUp = async (formData) =>{
 
     return serverResponse;
 }
+
+export const loginUser = async (formData) =>{
+     let serverResponse = await axios({
+            method: "POST",
+            url: "http://localhost:4000/user/login", // route to do login
+            data: formData
+        });
+
+    return serverResponse;
+}

@@ -1,4 +1,5 @@
 const User = require('../models/userModel.js')
+const bcrypt = require('bcrypt')
 
 const register = async (req, res)=>{
 
@@ -8,8 +9,8 @@ const register = async (req, res)=>{
 
     //if so, send error. If not, create User
     if (userExists){
-        res.send('User Exists')
-        console.log('User Exists');
+        res.status(400)
+        throw new Error('User exists')    
     }
      
     const user = await User.create({
@@ -28,9 +29,18 @@ const register = async (req, res)=>{
         res.status(201).json({surname : user.surname}+'created')
     }else{
         res.status(400)
+        throw new Error ('Failed to create user')
     }
 
     
 }
 
-module.exports = {register} 
+const login = async (req, res) =>{
+    const { email, password } = req.body
+
+    console.log(req.body);
+    res.send('Logged in')
+}
+
+
+module.exports = {register , login} 

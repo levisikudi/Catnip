@@ -6,7 +6,6 @@ import './index.css'
 const UserForm = () => {
   const [show, setshow] = useState(false)
 
-
   const [firstName, setFirstName] = useState()
   const [surname, setSurname] = useState()
   const [email, setEmail] = useState()
@@ -19,8 +18,6 @@ const UserForm = () => {
 
   const [formdata, setFormdata] = useState({})
 
-
-
   const handleShowClick = () =>{
     setshow(show? false:true)
   }
@@ -31,22 +28,25 @@ const UserForm = () => {
 
   const handleSubmit = async (e) =>{
      e.preventDefault();
-     if (!firstName ||!surname || !email || !state || !password ){
-       console.log('fill the fields');
+     if (!firstName || !surname || !email || !state || !password ){
+       alert('fill in all the required fields');
       }
+
       //check if passwords are the same
       if (password !== confirm){
-      console.log('paswords not okay');
+      alert('Paswords not okay');
     }
     //Takes all states and places them in an object
     setFormdata(
-      {firstName,
-      surname,
-      email,
-      password,
-      city,
-      state,
-      photo}
+      {
+        firstName,
+        surname,
+        email,
+        password,
+        city,
+        state,
+        photo
+      }
     )
     console.log(formdata);
     let response = await signUp(formdata)
