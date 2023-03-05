@@ -1,12 +1,12 @@
  const mongoose = require('mongoose')
 
  const userSchema = mongoose.Schema({
-     firstname: {
+     firstName: {
          type: String,
          required: true
      },
 
-     lastname: {
+     surname: {
          type: String,
          required: true
      },
@@ -35,15 +35,14 @@
 
      picture:{
         type: String,
-        required: true,
         default: 'https://i.imgur.com/xCvzudW.png'
      },
 
-     location: {
-        type: String,
-        required: true,
-     },
-
+     location: [
+      {city: {type: String}},
+      {state:{type: String}},
+      {zip: {type: Number}}
+   ],
      cat: {
         type: mongoose.Schema.Types.ObjectId , 
         ref: 'Cat'
