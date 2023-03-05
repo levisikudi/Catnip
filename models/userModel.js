@@ -13,7 +13,7 @@
 
      description: {
         type: String,
-        required: true
+      //   required: true
      },
 
      email: {
@@ -30,7 +30,7 @@
 
      gender: {
         type: String,
-        required: true
+      //   required: true
      },
 
      picture:{
