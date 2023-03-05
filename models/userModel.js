@@ -36,7 +36,7 @@
      picture:{
         type: String,
         required: true,
-        default: 'jjf'
+        default: 'https://i.imgur.com/xCvzudW.png'
      },
 
      location: {

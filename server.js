@@ -38,6 +38,10 @@ app.use(express.json())
 app.use(express.static(path.join(__dirname, 'build')))
 
 //routes
+
+app.use('/user', userRoutes)
+
+
 app.post('/users/signup',async (req, res) => {
 
     const {firstname, lastname, description, email, password, gender, picture, location } = req.body

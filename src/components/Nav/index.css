@@ -2,3 +2,12 @@
     background-color: black;
     height: 3rem;
 }
+#logo{
+    font-family: 'Chicle', cursive;
+    font-size: 2rem;
+    margin: 0;
+    padding: .3rem;
+    color: rgb(179, 182, 36) ;
+    /* border: 2px solid rgb(179, 182, 36);
+    border-radius: 40%; */
+}
