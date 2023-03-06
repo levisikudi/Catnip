@@ -28,7 +28,7 @@ const Login = (props) => {
     console.log(user);
 
     setUser(user)
-
+    console.log(user);
   }
 
 

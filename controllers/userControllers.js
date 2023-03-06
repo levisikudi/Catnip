@@ -1,5 +1,7 @@
 const User = require('../models/userModel.js')
 const bcrypt = require('bcrypt')
+const passport = require('passport');
+
 
 const register = async (req, res)=>{
 
@@ -14,12 +16,14 @@ const register = async (req, res)=>{
         res.status(400)
         throw new Error('User exists')    
     }
-     
+    
+    let hashedPassword = await bcrypt.hash(password, 10)
+
     const user = await User.create({
         firstName,
         surname,
         email,
-        password,
+        password : hashedPassword,
         description,
         gender,
         city,
@@ -37,12 +41,37 @@ const register = async (req, res)=>{
     
 }
 
-const login = async (req, res) =>{
-    const { email, password } = req.body
-
+const login = async (req, res, next) =>{
     console.log(req.body);
-    res.json(req.body.data)
+    // passport authentication
+    passport.authenticate("local", (err, user, message) => {
+        console.log(message);
+        console.log("authenicated");
+
+        if (err) throw err;
+        if (!user) {
+            res.json({
+                message: "login failed",
+                user: false
+            })
+        } else {
+            // delete user.password
+            req.logIn(user, err => {
+                if (err) throw err;
+                res.json({
+                    message: "successfully authenticated",
+                    // remove user
+                })
+                console.log("authenticated");
+            })
+        }
+    })
+    (req, res, next)
+}
+
+const getuser = async (req, res) =>{
+
 }
 
 
-module.exports = {register , login, } 
+module.exports = {register , login, getuser } 
