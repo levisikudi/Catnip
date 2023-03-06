@@ -34,10 +34,24 @@ const Nav = () => {
             <div className="collapse navbar-collapse justify-content-end" id="expandation">
                 <ul className="navbar-nav navbar-nav-scroll">
 
-                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Home</Link></li>
-                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Testimonials</Link></li>
-                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Features</Link></li>
-                    <li className="nav-item mx-4"><Link to ="/" className="nav-link">Links</Link></li>
+                    {/* {user?
+
+                    :
+
+                    } */}
+
+                    <li className="nav-item mx-4">
+                        <Link to ="/" className="nav-link">Home</Link>
+                    </li>
+                    <li className="nav-item mx-4">
+                        <Link to ="/" className="nav-link">Testimonials</Link>
+                    </li>
+                    <li className="nav-item mx-4">
+                        <Link to ="/" className="nav-link">Features</Link>
+                    </li>
+                    <li className="nav-item mx-4">
+                        <Link to ="/" className="nav-link">Links</Link>
+                    </li>
 
 
 

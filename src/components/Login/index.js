@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/userContexts'
 import { loginUser , getUserfromSession} from '../../utilities/userUtilities'
@@ -15,6 +15,20 @@ const Login = (props) => {
 
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
+
+
+  useEffect(() => {
+      let autoLogin = async () => {
+        await loginUser({email: "d@d", password: "damiduro"});
+        // get session info (user)
+        let user = await getUserfromSession()
+        setUser(user);
+      }
+      autoLogin()
+      Nav('/user/dash')
+
+      
+    }, [])
 
 
   const handleButtonClick = () =>{
