@@ -9,7 +9,6 @@ const Login = (props) => {
   let {setShowLogin} = props
 
   const [user, setUser] = useState(null)
-  const [formdata, setFormData] = useState({})
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
@@ -21,17 +20,19 @@ const Login = (props) => {
   const handleSubmit = async (e) =>{
     e.preventDefault()
 
-    setFormData({
-      email,
-      password
-    })
+    
+    let data = { email, password}
+   
 
-    let user = await loginUser(formdata)
+    let user = await loginUser(data)
     console.log(user);
 
     setUser(user)
 
   }
+
+
+
   
   return (
     <div>

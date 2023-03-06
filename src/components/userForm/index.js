@@ -1,6 +1,8 @@
-import { React, useState } from 'react'
+import axios from 'axios'
+import { React, useEffect, useState } from 'react'
 import { signUp } from '../../utilities/userUtilities'
 import './index.css'
+
 
 
 const UserForm = () => {
@@ -13,20 +15,18 @@ const UserForm = () => {
   const [confirm, setConfirm] = useState()
   const [city, setCity] = useState()
   const [state, setState] = useState()
-  const [zip, setZip] = useState()
-  const [photo, setPhoto] = useState()
+  const [picture, setPicture] = useState()
+  const [loading, setLoading] = useState(false)
 
-  const [formdata, setFormdata] = useState({})
 
   const handleShowClick = () =>{
     setshow(show? false:true)
   }
 
-  const postDetails = (photo) =>{
 
-  }
-
+  
   const handleSubmit = async (e) =>{
+    setLoading()
      e.preventDefault();
      if (!firstName || !surname || !email || !state || !password ){
        alert('fill in all the required fields');
@@ -37,7 +37,7 @@ const UserForm = () => {
       alert('Paswords not okay');
     }
     //Takes all states and places them in an object
-    setFormdata(
+    let data = (
       {
         firstName,
         surname,
@@ -45,14 +45,52 @@ const UserForm = () => {
         password,
         city,
         state,
-        photo
+        picture
       }
+
     )
-    console.log(formdata);
-    let response = await signUp(formdata)
+
+    console.log(data);
+    let response = await signUp(data)
     console.log(response);
 
   }
+  
+  const postDetails = (photo) =>{
+    setLoading(true)
+    if(photo === undefined){
+      alert('Please Select an Image')
+      return;
+    }
+
+    if (photo.type === 'image/jpeg' || photo.type === 'image/png'){
+     const data = new FormData();
+     data.append('file', photo)
+     data.append('upload_preset','Catnip') 
+     data.append('cloud_name','dtvq6pgc4') 
+
+     fetch('https://api.cloudinary.com/v1_1/dtvq6pgc4/image/upload',{
+       method: 'POST',
+       body : data
+     }).then((res) => res.json())
+        .then(data => {
+          setPicture(data.url.toString())
+          console.log(data.url.toString());
+          setLoading(false)
+          console.log('photo posted');
+        })
+        .catch((err)=>{
+          console.log(err);
+          setLoading(false)
+        })
+    }else{
+      alert('File not supported, Please select valid image')
+      setLoading(false)
+    }
+  }
+
+
+  
 
   return (
   <div className='main d-flex justify-content-center align-items-center'>
@@ -93,14 +131,10 @@ const UserForm = () => {
         <div className="col-md-4">
           <label className="form-label">State</label>
           <select className="form-select" onChange={(e)=>setState(e.target.value)}>
-            <option default>Feline-nopolis...</option>
+            <option default>Choose State...</option>
             <option>NY</option>
             <option>NJ</option>
           </select>
-        </div>
-        <div className="col-md-2">
-          <label className="form-label">Zip</label>
-          <input type="text" className="form-control" id="inputZip" onChange={(e)=>setZip(e.target.value)}/>
         </div>
 
         <div className="col-md-6">
@@ -109,7 +143,13 @@ const UserForm = () => {
         </div>
         
         <div className="col-12 text-end">
-          <button type="submit" className="btn btn-outline-warning text-white border-white" onClick={(e)=> handleSubmit(e)}>Submit</button>
+          <button type="submit" className="btn btn-outline-warning text-white border-white" onClick={(e)=> handleSubmit(e)}>
+            {loading?
+          "Loading..."
+          :  
+          "Submit"
+          }
+            </button>
         </div>
     </form>
   </div>

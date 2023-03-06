@@ -38,15 +38,8 @@
         default: 'https://i.imgur.com/xCvzudW.png'
      },
 
-     location: [
-      {city: {type: String}},
-      {state:{type: String}},
-      {zip: {type: Number}}
-   ],
-     cat: {
-        type: mongoose.Schema.Types.ObjectId , 
-        ref: 'Cat'
-     }
+     city: {type: String},
+     state:{type: String},
     }, 
     {timestamps:true}
  )

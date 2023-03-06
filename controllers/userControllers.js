@@ -3,7 +3,9 @@ const bcrypt = require('bcrypt')
 
 const register = async (req, res)=>{
 
-    const { firstName, surname, email, password, description, gender, location, photo} = req.body
+    console.log(req.body);
+
+    const { firstName, surname, email, password, description, gender, city, state, picture} = req.body
     // Check if user exists
     const userExists = await User.findOne({email})
 
@@ -20,10 +22,10 @@ const register = async (req, res)=>{
         password,
         description,
         gender,
-        location,
-        photo
+        city,
+        state,
+        picture
     })
-
 
     if(user){
         res.status(201).json({surname : user.surname}+'created')
@@ -39,8 +41,8 @@ const login = async (req, res) =>{
     const { email, password } = req.body
 
     console.log(req.body);
-    res.send('Logged in')
+    res.json(req.body.data)
 }
 
 
-module.exports = {register , login} 
+module.exports = {register , login, } 
