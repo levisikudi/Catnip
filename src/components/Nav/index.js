@@ -1,10 +1,28 @@
-import React from 'react'
-import { Link , useLocation } from 'react-router-dom'
+import React, { useContext } from 'react'
+import { Link , useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
+import { AppContext } from '../../context/userContexts'
+import { getUserfromSession, logout } from '../../utilities/userUtilities'
 
 const Nav = () => {
 
+    let Nav = useNavigate()
+
   const location = useLocation().pathname;
+  let { user, setUser } = useContext(AppContext)
+
+  const handleLogOut = async (e) =>{
+
+    e.preventDefault()
+   
+    await logout()
+    setUser(false)
+    console.log('logged out');
+    Nav('/')
+    
+    
+
+  }
 
   return (
     <nav id="navbar" className="navbar navbar-expand-md sticky-top navbar-dark bg-black  ">
@@ -20,10 +38,19 @@ const Nav = () => {
                     <li className="nav-item mx-4"><Link to ="/" className="nav-link">Testimonials</Link></li>
                     <li className="nav-item mx-4"><Link to ="/" className="nav-link">Features</Link></li>
                     <li className="nav-item mx-4"><Link to ="/" className="nav-link">Links</Link></li>
-                    {location === '/signup'?
-                    <></>
-                    :
+
+
+
+
+                    {location === '/' && !user ?
                     <Link to="/signup" className="btn btn-success ">Sign Up</Link>
+                    :
+                    <></>
+                }
+                    {user?
+                    <button className="btn btn-success" onClick={(e)=>handleLogOut(e)}>Log Out</button>
+                    :
+                    <></>
                     }
 
 

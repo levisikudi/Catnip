@@ -38,7 +38,8 @@ app.use(express.json())
 
 
 initializePassport(
-    passport,
+    passport
+    ,
     // passport tells us that they want a function that will return the correct user given an email
     async email => {
         let user = User.findOne({email: email})
@@ -57,6 +58,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { originalMaxAge: 3600000 }
 }))
+app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'build')))
 //routes

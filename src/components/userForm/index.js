@@ -126,7 +126,7 @@ const UserForm = () => {
         </div>
         <div className="col-md-6">
           <label className="form-label">City</label>
-          <input type="text" className="form-control" id="inputCity" onChange={(e)=>setCity(e.target.value)}/>
+          <input type="text" placeholder='New Cat City' className="form-control" id="inputCity" onChange={(e)=>setCity(e.target.value)}/>
         </div>
         <div className="col-md-4">
           <label className="form-label">State</label>

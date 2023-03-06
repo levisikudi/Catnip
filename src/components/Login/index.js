@@ -1,14 +1,18 @@
-import React, { useState } from 'react'
-import { loginUser } from '../../utilities/userUtilities'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { AppContext } from '../../context/userContexts'
+import { loginUser , getUserfromSession} from '../../utilities/userUtilities'
 import './index.css'
 
 
 
 const Login = (props) => {
 
+  let { user , setUser } = useContext(AppContext)
   let {setShowLogin} = props
+  
+  let Nav = useNavigate()
 
-  const [user, setUser] = useState(null)
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
 
@@ -20,15 +24,16 @@ const Login = (props) => {
   const handleSubmit = async (e) =>{
     e.preventDefault()
 
-    
-    let data = { email, password}
+    let data = { email, password }
    
+    await loginUser(data)
+    
+    let res = await getUserfromSession()
+    await setUser(res)
 
-    let user = await loginUser(data)
-    console.log(user);
-
-    setUser(user)
-    console.log(user);
+   if(user){
+    Nav('/user/dash')
+   }
   }
 
 

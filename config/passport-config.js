@@ -7,7 +7,7 @@ module.exports = async function(passport){
 
     new localStrategy({usernameField: "email"}, async (email, password, done) =>{
         const user = await User.findOne({email: email})
-            console.log('got user!');
+            console.log('got user!', user);
             
             if(!user) return done(null, false,{message: "Email or password incorrect"})
 
@@ -25,14 +25,12 @@ module.exports = async function(passport){
     )
 
     // 2. add seralize function to passport library
-    // place use in a session
-    // callback function - a function that runs after another function (or at a specific trigger)
+
     passport.serializeUser((user, cb) => {
         // do stuff here
         cb(null, user)
     });
     // 3. add deserialize function to passport library
-    // take out of session
     passport.deserializeUser(async (id, cb) => {
         return cb(null, await User.findById(id))
     });

@@ -2,6 +2,21 @@ const User = require('../models/userModel.js')
 const bcrypt = require('bcrypt')
 const passport = require('passport');
 
+const initializePassport = require('../config/passport-config')
+
+initializePassport(
+    passport,
+    
+    async email => {
+        let user = User.findOne({email: email})
+        return user;
+    },
+    async id => {
+        let user = User.findById(id);
+        return user;
+    },
+);
+
 
 const register = async (req, res)=>{
 
@@ -69,9 +84,29 @@ const login = async (req, res, next) =>{
     (req, res, next)
 }
 
-const getuser = async (req, res) =>{
+const logout = async (req, res, next) =>{
+    console.log(req);
 
+    try {
+        
+    req.logout(function(err) {
+    if (err) 
+    { 
+        return next(err); 
+    }
+  })
+    } catch (error) {
+         console.error(error);
+
+    }
+  res.json("logout successful");
+};
+
+
+const getuser = async (req, res) =>{
+    console.log();
+    res.json({session:req.session})
 }
 
 
-module.exports = {register , login, getuser } 
+module.exports = {register , login, getuser, logout} 
