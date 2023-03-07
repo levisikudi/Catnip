@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { getSingleUser } from '../../utilities/userUtilities'
+import ChatUserIcon from '../chatUserIcon'
 import ChatUserList from '../ChatUserList'
 
 
@@ -12,7 +13,7 @@ const ChatNav = () => {
 
   const handleUserSearch = async (e) =>{
     e.preventDefault()
-
+    console.log(search);
     if(search!== ''){
       let res = await getSingleUser(search)
       console.log(res);
@@ -44,9 +45,7 @@ const ChatNav = () => {
           <span className="placeholder col-12"></span>
         </p>
         :
-        <ChatUserList 
-          chatUser={chatUser}
-        />
+          <ChatUserIcon chatUser={chatUser}/>
         }
       </div>
     </div>

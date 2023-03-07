@@ -110,7 +110,8 @@ const getuser = async (req, res) =>{
 
 const getSingleUser = async (req, res) =>{
     console.log('hitting route');
-    let response = await User.find({ firstName: req.params.name })
+    console.log(req.params);
+    let response = await User.find({ firstName: req.params.firstName })
     res.send(response)
 }
 

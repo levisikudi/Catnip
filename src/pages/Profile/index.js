@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
+import ChatNav from '../../components/chatNav'
+import EditContent from '../../components/EditContent'
 import ProfileContent from '../../components/mainProfileContent'
-import Sidebar from '../../components/sidebar'
+import './index.css'
 
 const Profile = () => {
+
+  const [editMode, setEditMode] = useState(false)
+
   return (
-    <div className='d-'>
-      <Sidebar />
-      <ProfileContent />
-    </div>
+    <section id='profile' className='d-flex justify-content-start '>
+      <div id='sidebar'className='border border-end' >
+      <ChatNav />
+      </div>
+    {editMode?
+     <EditContent setEditMode={setEditMode}/>
+    :
+     <ProfileContent />
+    }
+    </section>
   )
 }
 

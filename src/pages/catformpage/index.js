@@ -26,9 +26,9 @@ const handleSubmit = async (e) =>{
 
   console.log(data);
   let cat = await createCat(data)
-  // if (cat){
-  //   Nav('/user/dash')
-  // }
+  if (cat){
+    Nav('/user/dash')
+  }
 
 }
 

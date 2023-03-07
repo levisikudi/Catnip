@@ -49,9 +49,13 @@ export const getUserfromSession = async () =>{
     }
 
 export const getSingleUser = async (name) => {
+    console.log(name);
 
-    let serverResponse = await axios(`/user/getSingleUser:${name}`)
+    let serverResponse = await axios(`/user/getSingleUser/${name}`)
     console.log(serverResponse);
+     
+    let finalData = serverResponse.data[0]
+    console.log(finalData);
 
-    return serverResponse;
+    return finalData;
 }

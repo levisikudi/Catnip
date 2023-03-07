@@ -7,7 +7,6 @@ import CatformPage from './pages/catformpage';
 import CatProfile from './pages/CatProfile';
 import Conversations from './pages/Conversations';
 import Dashboard from './pages/Dashboard';
-import EditPage from './pages/EditPage';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import SignUpPage from './pages/SignUp';
@@ -19,19 +18,19 @@ function App() {
 
   let nav = useNavigate()
 
-  //  useEffect(() => {
-  //     let autoLogin = async () => {
-  //       await loginUser({email: "d@d", password: "damiduro"});
-  //       // get session info (user)
-  //       let user = await getUserfromSession()
-  //       setUser(user);
-  //       nav('/user/dash')
+   useEffect(() => {
+      let autoLogin = async () => {
+        await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
+        // get session info (user)
+        let user = await getUserfromSession()
+        setUser(user);
+        nav('/user/dash')
 
-  //     }
-  //     autoLogin()
+      }
+      autoLogin()
 
       
-  //   }, [])
+    }, [])
 
   
 
@@ -43,7 +42,6 @@ function App() {
          <Route path='/signup' element={<SignUpPage />}/>
          <Route path='/catform' element={<CatformPage />}/>
          <Route path='/user/dash' element={<Dashboard />}/>
-         <Route path='/user/edit' element={<EditPage />}/>
          <Route path='/user/profile' element={<Profile />}/>
          <Route path='/cats/profile' element={<CatProfile />}/>
          <Route path='/chat' element={<Conversations />}/>
