@@ -11,3 +11,7 @@
     /* border: 2px solid rgb(179, 182, 36);
     border-radius: 40%; */
 }
+#avatar{
+    width: 2rem;
+    margin-left: 0.5rem ;
+}

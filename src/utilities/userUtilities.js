@@ -46,5 +46,5 @@ export const getUserfromSession = async () =>{
     let response = await axios('/user/getuser')
         console.log(response);
 
-        return response;
+        return response.data.session.passport.user
     }

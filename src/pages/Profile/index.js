@@ -1,8 +1,11 @@
 import React from 'react'
+import Sidebar from '../../components/sidebar'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div>
+      ProfilePage
+    </div>
   )
 }
 

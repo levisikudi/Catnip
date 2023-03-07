@@ -34,24 +34,37 @@ const Nav = () => {
             <div className="collapse navbar-collapse justify-content-end" id="expandation">
                 <ul className="navbar-nav navbar-nav-scroll">
 
-                    {/* {user?
-
+                    {user?
+                    <>
+                        <li className="nav-item mx-4">
+                        <Link to ="/user/dash" className="nav-link">Dashboard</Link>
+                        </li>
+                        <li className="nav-item mx-4">
+                            <Link to ="/user/profile" className="nav-link">Profile</Link>
+                        </li>
+                        <li className="nav-item mx-4">
+                            <Link to ="/chat" className="nav-link">Chats</Link>
+                        </li>
+                        
+                    </>
                     :
+                    <>
+                        <li className="nav-item mx-4">
+                            <Link to ="/" className="nav-link">Home</Link>
+                        </li>
+                        <li className="nav-item mx-4">
+                            <Link to ="/" className="nav-link">Testimonials</Link>
+                        </li>
+                        <li className="nav-item mx-4">
+                            <Link to ="/" className="nav-link">Features</Link>
+                        </li>
+                        <li className="nav-item mx-4">
+                            <Link to ="/" className="nav-link">Links</Link>
+                        </li>
+                    </>
+                    }
 
-                    } */}
-
-                    <li className="nav-item mx-4">
-                        <Link to ="/" className="nav-link">Home</Link>
-                    </li>
-                    <li className="nav-item mx-4">
-                        <Link to ="/" className="nav-link">Testimonials</Link>
-                    </li>
-                    <li className="nav-item mx-4">
-                        <Link to ="/" className="nav-link">Features</Link>
-                    </li>
-                    <li className="nav-item mx-4">
-                        <Link to ="/" className="nav-link">Links</Link>
-                    </li>
+                    
 
 
 
@@ -62,7 +75,18 @@ const Nav = () => {
                     <></>
                 }
                     {user?
-                    <button className="btn btn-success" onClick={(e)=>handleLogOut(e)}>Log Out</button>
+                    <div>
+                        <button className="btn btn-success" onClick={(e)=>handleLogOut(e)}>Log Out
+                        </button>
+                        <Link to='/user/profile'>
+                        <img 
+                        id='avatar'
+                        className='img-fluid rounded-circle'
+                        src={user.picture}
+                        />
+                        </Link>
+                    </div>
+
                     :
                     <></>
                     }
