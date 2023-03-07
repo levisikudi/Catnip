@@ -27,7 +27,14 @@ const Nav = () => {
   return (
     <nav id="navbar" className="navbar navbar-expand-md sticky-top navbar-dark bg-black  ">
         <div className="container ">
-            <div id='logo' className="navbar-brand"><Link to ="/" className='nav-link'>Catnip</Link></div>
+            <div id='logo' 
+            className="navbar-brand"
+            >
+                
+
+                <Link to ={user? '/user/dash': "/"} className='nav-link'>Catnip</Link>
+                
+                </div>
             <button className="navbar-toggler" type='button' data-bs-toggle="collapse" data-bs-target="#expandation">
                 <span className="navbar-toggler-icon" ></span>
             </button>

@@ -45,9 +45,9 @@ const register = async (req, res)=>{
         state,
         picture
     })
-
+    console.log(user);
     if(user){
-        res.status(201).json({surname : user.surname}+'created')
+        res.json({user:user})
     }else{
         res.status(400)
         throw new Error ('Failed to create user')

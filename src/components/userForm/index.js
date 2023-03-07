@@ -1,9 +1,9 @@
 import axios from 'axios'
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { signUp } from '../../utilities/userUtilities'
+import { AppContext } from '../../context/userContexts'
+import { getUserfromSession, loginUser, signUp } from '../../utilities/userUtilities'
 import './index.css'
-
 
 const UserForm = () => {
   const [show, setshow] = useState(false)
@@ -17,6 +17,8 @@ const UserForm = () => {
   const [state, setState] = useState()
   const [picture, setPicture] = useState()
   const [loading, setLoading] = useState(false)
+
+  const {user, setUser} = useContext(AppContext)
 
   let Nav = useNavigate()
 
@@ -55,6 +57,16 @@ const UserForm = () => {
     console.log(data);
     let response = await signUp(data)
     console.log(response);
+
+    let loginData = {email, password}
+    // login the user with the credentials made
+    await loginUser(loginData)
+    let res = await getUserfromSession()
+    console.log(res);
+    await setUser(res)
+
+
+
     Nav('/catform')
 
   }
