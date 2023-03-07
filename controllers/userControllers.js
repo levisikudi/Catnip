@@ -114,5 +114,16 @@ const getSingleUser = async (req, res) =>{
     let response = await User.find({ firstName: req.params.firstName })
     res.send(response)
 }
+const getAllUsers = async (req, res) =>{
+    try {
+    const user = await User.find({}).select('firstName surname picture cat')
+    res.json(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+  
+}
 
-module.exports = {register , login, getuser, logout, getSingleUser} 
+
+module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers} 

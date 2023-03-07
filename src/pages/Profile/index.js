@@ -9,7 +9,7 @@ const Profile = () => {
   const [editMode, setEditMode] = useState(false)
 
   return (
-    <section id='profile' className='d-flex justify-content-start '>
+    <section id='profile' className='d-flex justify-content-between '>
       <div id='sidebar'className='border border-end' >
       <ChatNav />
       </div>
