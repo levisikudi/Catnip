@@ -20,7 +20,7 @@ function App() {
          <Route path='/user/dash' element={<Dashboard />}/>
          <Route path='/user/edit' element={<EditPage />}/>
          <Route path='/user/profile' element={<Profile />}/>
-         <Route path='/cats/profle' element={<CatProfile />}/>
+         <Route path='/cats/profile' element={<CatProfile />}/>
          <Route path='/chat' element={<Conversations />}/>
          <Route path='/' element={<LandingPage />}/>
          <Route path='/*' element={<Navigate to='/' />}/>

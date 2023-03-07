@@ -5,16 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ContextProvider from './context/userContexts';
+import ChatContextProvider from './context/chatContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ContextProvider>
-      <Router>
-        <App />
-      </Router>
-    </ContextProvider>
+      <ContextProvider>
+        <Router>
+          <App />
+        </Router>
+      </ContextProvider>
   </React.StrictMode>
 );
 

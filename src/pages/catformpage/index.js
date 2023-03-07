@@ -96,10 +96,10 @@ const postDetails = (photo) =>{
 
         <div className="col-md-12">
 
-          <label for="startDate">When was your cat born?</label>
+          <label className='form-label'>When was your cat born?</label>
           <input 
           id="startDate" 
-          class="form-control" 
+          className="form-control" 
           type="date" 
           onChange={(e)=>setDob(e.target.value)} 
           />
@@ -108,8 +108,8 @@ const postDetails = (photo) =>{
           <div className='col-6'>
           <label className='form-label'>What is your cat's gender?</label>
           
-          <div class="form-check">
-            <input class="form-check-input" 
+          <div className="form-check">
+            <input className="form-check-input" 
             type="radio" 
             name="gender" 
             value='Male'
@@ -117,14 +117,14 @@ const postDetails = (photo) =>{
              onChange={(e)=>setGender('Male')}
             />
 
-            <label class="form-check-label">
+            <label className="form-check-label">
              Male
             </label>
 
           </div>
 
-          <div class="form-check">
-            <input class="form-check-input" 
+          <div className="form-check">
+            <input className="form-check-input" 
             type="radio" 
             name="gender" 
             value='Female'
@@ -132,7 +132,7 @@ const postDetails = (photo) =>{
             onChange={(e)=>setGender('Female')}
             />
             <label 
-            class="form-check-label" >
+            className="form-check-label" >
               Female
             </label>
           </div>
@@ -142,27 +142,27 @@ const postDetails = (photo) =>{
 
             <label className='form-label col-6'>Is She/He Hypoallergenic?</label>
             
-            <div class="form-check">
-              <input class="form-check-input" 
+            <div className="form-check">
+              <input className="form-check-input" 
               type="radio" 
               name="radio" 
               value='Yes'
               id="yes"
               onChange={(e)=>setHypoallergenic('She/He is Hypoallergenic')}
               />
-              <label class="form-check-label">
+              <label className="form-check-label">
               Yes
               </label>
             </div>
-            <div class="form-check">
-              <input class="form-check-input" 
+            <div className="form-check">
+              <input className="form-check-input" 
               type="radio" 
               name="radio" 
               value='no'
               id="no"
               onChange={(e)=>setHypoallergenic('She/He is not Hypoallergenic')}
               />
-              <label class="form-check-label">
+              <label className="form-check-label">
               No
               </label>
             </div>

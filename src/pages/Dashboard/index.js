@@ -1,8 +1,17 @@
 import React from 'react'
+import DisplayCats from '../../components/displayCats'
+import TopDrawer from '../../components/Topdrawer'
 
 const Dashboard = () => {
+   
+
   return (
-    <div>Dashboard</div>
+
+    <div>
+      <TopDrawer />
+      <DisplayCats />
+      
+    </div>
   )
 }
 
