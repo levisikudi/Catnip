@@ -40,6 +40,10 @@
 
      city: {type: String},
      state:{type: String},
+    cat :{
+        type : mongoose.Schema.Types.ObjectId , 
+        ref : 'Cat'
+    },
     }, 
     {timestamps:true}
  )

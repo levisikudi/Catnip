@@ -5,7 +5,7 @@ export const createCat = async (formData) =>{
     console.log(formData);
     let serverResponse = await axios({
             method: "POST",
-            url: "http://localhost:4000/cat/create", // route to create cat
+            url: "/cat/create", // route to create cat
             data: formData
         });
 

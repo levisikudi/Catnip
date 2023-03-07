@@ -41,10 +41,17 @@ export const logout = async () =>{
    
 }
 
-
 export const getUserfromSession = async () =>{
     let response = await axios('/user/getuser')
         console.log(response);
 
         return response.data.session.passport.user
     }
+
+export const getSingleUser = async (name) => {
+
+    let serverResponse = await axios(`/user/getSingleUser:${name}`)
+    console.log(serverResponse);
+
+    return serverResponse;
+}

@@ -1,8 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { getSingleUser } from '../../utilities/userUtilities'
+import ChatUserList from '../ChatUserList'
+
 
 const ChatNav = () => {
+
+  const [search, setSearch] = useState('')
+  const [chatUser, setChatUser] = useState({})
+
+  const [loading, setLoading] = useState(false)
+
+  const handleUserSearch = async (e) =>{
+    e.preventDefault()
+
+    if(search!== ''){
+      let res = await getSingleUser(search)
+      console.log(res);
+      setChatUser(res)
+      setLoading(true)
+
+    }
+    setLoading(false)
+  }
+
+ 
+
+
+
   return (
-    <div>ChatNav</div>
+    <div>
+      <div>
+         <div className='d-flex justify-content-center'>
+        <input
+        type='search'
+        placeholder='Search by Name'
+        onChange={(e)=>setSearch(e.target.value)}
+        />
+        <button
+        onClick={(e)=>handleUserSearch(e)}>Search</button>
+        </div>
+        {loading?
+        <p className='card-text placeholder-glow'>
+          <span className="placeholder col-12"></span>
+        </p>
+        :
+        <ChatUserList 
+          chatUser={chatUser}
+        />
+        }
+      </div>
+    </div>
   )
 }
 

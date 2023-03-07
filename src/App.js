@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
+import { Navigate, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
 import { AppContext } from './context/userContexts';
@@ -11,10 +11,29 @@ import EditPage from './pages/EditPage';
 import LandingPage from './pages/LandingPage';
 import Profile from './pages/Profile';
 import SignUpPage from './pages/SignUp';
+import { getUserfromSession, loginUser } from './utilities/userUtilities'
 
 function App() {
 
-  const {user} = useContext(AppContext)
+  const {user, setUser} = useContext(AppContext)
+
+  let nav = useNavigate()
+
+  //  useEffect(() => {
+  //     let autoLogin = async () => {
+  //       await loginUser({email: "d@d", password: "damiduro"});
+  //       // get session info (user)
+  //       let user = await getUserfromSession()
+  //       setUser(user);
+  //       nav('/user/dash')
+
+  //     }
+  //     autoLogin()
+
+      
+  //   }, [])
+
+  
 
   return (
     <div className="App">

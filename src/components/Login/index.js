@@ -17,18 +17,17 @@ const Login = (props) => {
   const [password, setPassword] = useState()
 
 
+ 
   useEffect(() => {
-      let autoLogin = async () => {
-        await loginUser({email: "d@d", password: "damiduro"});
-        // get session info (user)
-        let user = await getUserfromSession()
-        setUser(user);
-      }
-      autoLogin()
-      Nav('/user/dash')
-
-      
-    }, [])
+    
+  if(user){
+    Nav('/user/dash')
+  }
+   
+  }, [user])
+  
+ 
+    
 
 
   const handleButtonClick = () =>{
@@ -45,9 +44,9 @@ const Login = (props) => {
     let res = await getUserfromSession()
     await setUser(res)
 
-   if(user){
+   
     Nav('/user/dash')
-   }
+   
   }
 
 

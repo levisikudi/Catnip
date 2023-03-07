@@ -1,10 +1,12 @@
 import React from 'react'
+import ProfileContent from '../../components/mainProfileContent'
 import Sidebar from '../../components/sidebar'
 
 const Profile = () => {
   return (
-    <div>
-      ProfilePage
+    <div className='d-'>
+      <Sidebar />
+      <ProfileContent />
     </div>
   )
 }

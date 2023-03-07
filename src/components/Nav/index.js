@@ -71,11 +71,6 @@ const Nav = () => {
                     </>
                     }
 
-                    
-
-
-
-
                     {location === '/' && !user ?
                     <Link to="/signup" className="btn btn-success ">Sign Up</Link>
                     :
@@ -85,6 +80,7 @@ const Nav = () => {
                     <div>
                         <button className="btn btn-success" onClick={(e)=>handleLogOut(e)}>Log Out
                         </button>
+                        
                         <Link to='/user/profile'>
                         <img 
                         id='avatar'
@@ -93,7 +89,6 @@ const Nav = () => {
                         />
                         </Link>
                     </div>
-
                     :
                     <></>
                     }

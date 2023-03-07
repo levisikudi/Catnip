@@ -106,7 +106,12 @@ const logout = async (req, res, next) =>{
 const getuser = async (req, res) =>{
     console.log();
     res.json({session:req.session})
+};
+
+const getSingleUser = async (req, res) =>{
+    console.log('hitting route');
+    let response = await User.find({ firstName: req.params.name })
+    res.send(response)
 }
 
-
-module.exports = {register , login, getuser, logout} 
+module.exports = {register , login, getuser, logout, getSingleUser} 

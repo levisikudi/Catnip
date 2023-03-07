@@ -6,7 +6,7 @@ module.exports = async function(passport){
     passport.use(
 
     new localStrategy({usernameField: "email"}, async (email, password, done) =>{
-        const user = await User.findOne({email: email})
+        const user = await User.findOne({email: email}).populate("cat")
             console.log('got user!', user);
             
             if(!user) return done(null, false,{message: "Email or password incorrect"})
