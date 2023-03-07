@@ -1,6 +1,8 @@
+import { useContext } from 'react';
 import { Navigate, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
+import { AppContext } from './context/userContexts';
 import CatformPage from './pages/catformpage';
 import CatProfile from './pages/CatProfile';
 import Conversations from './pages/Conversations';
@@ -11,10 +13,14 @@ import Profile from './pages/Profile';
 import SignUpPage from './pages/SignUp';
 
 function App() {
+
+  const {user} = useContext(AppContext)
+
   return (
     <div className="App">
       <Nav />
-      <Routes>
+      {user?
+        <Routes>
          <Route path='/signup' element={<SignUpPage />}/>
          <Route path='/catform' element={<CatformPage />}/>
          <Route path='/user/dash' element={<Dashboard />}/>
@@ -25,6 +31,14 @@ function App() {
          <Route path='/' element={<LandingPage />}/>
          <Route path='/*' element={<Navigate to='/' />}/>
       </Routes>
+        :
+      <Routes>
+         <Route path='/signup' element={<SignUpPage />}/>
+         <Route path='/catform' element={<CatformPage />}/>
+         <Route path='/' element={<LandingPage />}/>
+         <Route path='/*' element={<Navigate to='/' />}/>
+      </Routes>
+      }
     </div>
   );
 }
