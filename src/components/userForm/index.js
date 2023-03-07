@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { signUp } from '../../utilities/userUtilities'
 import './index.css'
-
 
 
 const UserForm = () => {
@@ -17,6 +17,8 @@ const UserForm = () => {
   const [state, setState] = useState()
   const [picture, setPicture] = useState()
   const [loading, setLoading] = useState(false)
+
+  let Nav = useNavigate()
 
 
   const handleShowClick = () =>{
@@ -53,6 +55,7 @@ const UserForm = () => {
     console.log(data);
     let response = await signUp(data)
     console.log(response);
+    Nav('/catform')
 
   }
   

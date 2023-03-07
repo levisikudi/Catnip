@@ -1,33 +1,26 @@
  const mongoose = require('mongoose')
 
  const catSchema = new mongoose.Schema({
-     firstname: {
+     name: {
          type: String,
-         required: true
      },
-     lastname: {type: String,},
-     nickname: {type: String,},
+     othername: {type: String,},
      gender:{
         type: String,
-        required: true
      },
      picture:[{
         type: String,
-        required: true,
         default: 'jjf'
      }],
      breed: {
         type: String,
-        required: true
      },
      hypoallergenic: { type : String },
-     hobbies:[{
+     hobbies:{
         type: String,
-        required: true
-     }],
+     },
      dob:{
         type: Date,
-        required: true
      },
       owner :{
         type : mongoose.Schema.Types.ObjectId , 

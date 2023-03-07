@@ -4,9 +4,8 @@ import UserForm from '../../components/userForm'
 
 const SignUpPage = () => {
   return (
-    <div>
+    <div >
         <UserForm />
-        <CatForm />
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 const CatProfile = () => {
   return (
-    <div>CatProfile</div>
+    <div>Cat</div>
   )
 }
 
