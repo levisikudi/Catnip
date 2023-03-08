@@ -32,6 +32,21 @@ function App() {
       
   //   }, [])
 
+    useEffect(() => {
+      let checkSession = async () => {
+       
+        // get session info (user)
+        let user = await getUserfromSession()
+        setUser(user);
+        nav('/user/dash')
+
+      }
+      checkSession()
+
+      
+    }, [])
+
+
   
 
   return (
