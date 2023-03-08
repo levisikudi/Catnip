@@ -98,7 +98,6 @@ const postDetails = (photo) =>{
 
           <label className='form-label'>When was your cat born?</label>
           <input 
-          id="startDate" 
           className="form-control" 
           type="date" 
           onChange={(e)=>setDob(e.target.value)} 

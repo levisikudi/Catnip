@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import ChatNav from '../../components/chatNav'
-import EditContent from '../../components/EditContent'
 import ProfileContent from '../../components/mainProfileContent'
 import './index.css'
 
@@ -17,11 +16,9 @@ const Profile = () => {
         </div>
 
         <div id='main-profile-content'>    
-          {editMode?
-          <EditContent setEditMode={setEditMode}/>
-          :
+       
           <ProfileContent />
-          }
+          
         </div> 
 
     </section>
