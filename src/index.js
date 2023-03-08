@@ -6,16 +6,19 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ContextProvider from './context/userContexts';
 import ChatContextProvider from './context/chatContext';
+import CatContextProvider from './context/catContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <CatContextProvider>
       <ContextProvider>
         <Router>
           <App />
         </Router>
       </ContextProvider>
+    </CatContextProvider>
   </React.StrictMode>
 );
 

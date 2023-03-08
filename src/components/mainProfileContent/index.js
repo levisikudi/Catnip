@@ -4,10 +4,22 @@ import DisplayCats from '../displayCats'
 import moment from 'moment';
 
 import './index.css'
+import { CatContext } from '../../context/catContext';
 
 const ProfileContent = () => {
 
   const {user, setUser} = useContext(AppContext)
+  const {   name, setName,
+            othername, setOthername,
+            gender, setGender,
+            breed, setBreed,
+            hypoallergenic, setHypoallergenic,
+            hobbies, setHobbies,
+            dob, setDob,
+            picture, setPicture,
+            loading, setLoading,} = useContext(CatContext)
+
+  
   let cat = user.cat
   const [pronoun, setPronoun] = useState(cat.gender == "Female"? "she": "he")
   const [posPronoun, setPosPronoun] = useState(cat.gender == "Female"? "Her": "His")
@@ -16,16 +28,16 @@ const ProfileContent = () => {
   const [editMode, setEditMode] = useState(false)
 
   // .............STATES..............
-  const [name, setName] = useState()
-  const [othername, setOthername] = useState()
-  const [gender, setGender] = useState()
-  const [breed, setBreed] = useState()
-  const [hypoallergenic, setHypoallergenic] = useState()
-  const [hobbies, setHobbies] = useState()
-  const [dob, setDob] = useState()
-  const [picture, setPicture] = useState()
+  // const [name, setName] = useState()
+  // const [othername, setOthername] = useState()
+  // const [gender, setGender] = useState()
+  // const [breed, setBreed] = useState()
+  // const [hypoallergenic, setHypoallergenic] = useState()
+  // const [hobbies, setHobbies] = useState()
+  // const [dob, setDob] = useState()
+  // const [picture, setPicture] = useState()
 
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
 
   // .............END OF STATES..............
 

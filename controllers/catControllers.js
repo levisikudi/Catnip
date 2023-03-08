@@ -41,8 +41,15 @@ const getAllCats = async (req, res)=>{
 const getSingleCat = async (req, res)=>{
    console.log('hitting route');
    console.log(req.params);
+   let cat = await Cat.findOne({name:req.params.name})
 
+   console.log(cat)
    
+   let user = await User.findOne({cat:cat._id})
+   console.log(user)
+
+   res.send({cat, user})
+
 }
 
 const updateCat = async (req, res) =>{

@@ -1,6 +1,8 @@
 import axios from "axios";
 
 
+
+
 export const createCat = async (formData) =>{
     console.log(formData);
     let serverResponse = await axios({
@@ -26,8 +28,9 @@ export const getSingleCat = async (name) => {
 
     let serverResponse = await axios({
         method: 'GET',
-        url: `/cat/getSingleCat:${name}`
+        url: `/cat/getSingleCat/:${name}`
     });
 
     return serverResponse;
 }
+
