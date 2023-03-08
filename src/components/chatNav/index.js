@@ -1,13 +1,15 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/userContexts'
 import { deleteUserbyId, getSingleUser } from '../../utilities/userUtilities'
 import ChatUserIcon from '../chatUserIcon'
-import ChatUserList from '../ChatUserList'
+// import ChatUserList from '../ChatUserList'
 
 
 const ChatNav = () => {
   const {user} = useContext(AppContext)
+  let navigate = useNavigate()
 
   const [search, setSearch] = useState('')
   const [chatUser, setChatUser] = useState({})
@@ -37,7 +39,7 @@ const ChatNav = () => {
     let res = await deleteUserbyId(user._id)
     
     // console.log(res);
-    
+    navigate('/user/dash')
 
   }
  

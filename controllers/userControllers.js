@@ -61,7 +61,7 @@ const login = async (req, res, next) =>{
     // passport authentication
     passport.authenticate("local", (err, user, message) => {
         console.log(message);
-        // console.log("authenicated");
+        console.log("authentication process...");
 
         if (err) throw err;
         if (!user) {

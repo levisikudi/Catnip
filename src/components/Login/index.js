@@ -40,11 +40,9 @@ const Login = (props) => {
     let data = { email, password }
    
     await loginUser(data)
-    
     let res = await getUserfromSession()
     await setUser(res)
 
-   
     Nav('/user/dash')
    
   }

@@ -38,4 +38,11 @@ const getAllCats = async (req, res)=>{
   }
 }
 
-module.exports = { createCat, getAllCats }
+const getSingleCat = async (req, res)=>{
+   console.log('hitting route');
+   console.log(req.params);
+
+   
+}
+
+module.exports = { createCat, getAllCats, getSingleCat }

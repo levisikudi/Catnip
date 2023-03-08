@@ -18,20 +18,19 @@ function App() {
 
   let nav = useNavigate()
 
-   useEffect(() => {
-      let autoLogin = async () => {
-        // await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
-        await loginUser({email: "t@k", password: "tanaka"});
-        // get session info (user)
-        let user = await getUserfromSession()
-        setUser(user);
-        nav('/user/dash')
+  //  useEffect(() => {
+  //     let autoLogin = async () => {
+  //       await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
+  //       // get session info (user)
+  //       let user = await getUserfromSession()
+  //       setUser(user);
+  //       nav('/user/dash')
 
-      }
-      autoLogin()
+  //     }
+  //     autoLogin()
 
       
-    }, [])
+  //   }, [])
 
   
 

@@ -1,6 +1,6 @@
 const express = require('express')
 
-const { createCat, getAllCats } = require('../controllers/catControllers')
+const { createCat, getAllCats, getSingleCat } = require('../controllers/catControllers')
 
 const router = express.Router()
 
@@ -8,6 +8,8 @@ const router = express.Router()
 router.post('/create', createCat)
 
 router.get('/get_all_cats', getAllCats)
+
+router.get('/getSingleCat/:name', getSingleCat)
 
 
 
