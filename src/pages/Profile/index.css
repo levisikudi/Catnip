@@ -1,6 +1,5 @@
-#sidebar{
-    max-width: 20%;
-}
-#profile{
-    min-height: 92.3vh;
+#main-profile{
+    display: grid;
+    min-height: 91vh;
+    grid-template-columns: 21.5% 78.5% ;
 }

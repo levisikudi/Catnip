@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
-import { getSingleUser } from '../../utilities/userUtilities'
+import axios from 'axios'
+import React, { useContext, useState } from 'react'
+import { AppContext } from '../../context/userContexts'
+import { deleteUserbyId, getSingleUser } from '../../utilities/userUtilities'
 import ChatUserIcon from '../chatUserIcon'
 import ChatUserList from '../ChatUserList'
 
 
 const ChatNav = () => {
+  const {user} = useContext(AppContext)
 
   const [search, setSearch] = useState('')
   const [chatUser, setChatUser] = useState({})
@@ -28,6 +31,15 @@ const ChatNav = () => {
     setLoading(false)
   }
 
+  const handleDelete = async (e) =>{
+    e.preventDefault()
+    console.log(user._id);
+    let res = await deleteUserbyId(user._id)
+    
+    // console.log(res);
+    
+
+  }
  
 
 
@@ -51,6 +63,8 @@ const ChatNav = () => {
         :
           <ChatUserIcon chatUser={chatUser}/>
         }
+        <button
+        onClick={(e)=>handleDelete(e)}>Delete Account</button>
       </div>
     </div>
   )

@@ -61,7 +61,7 @@ const login = async (req, res, next) =>{
     // passport authentication
     passport.authenticate("local", (err, user, message) => {
         console.log(message);
-        console.log("authenicated");
+        // console.log("authenicated");
 
         if (err) throw err;
         if (!user) {
@@ -102,7 +102,6 @@ const logout = async (req, res, next) =>{
   res.json("logout successful");
 };
 
-
 const getuser = async (req, res) =>{
     console.log();
     res.json({session:req.session})
@@ -125,5 +124,13 @@ const getAllUsers = async (req, res) =>{
   
 }
 
+const deleteUserbyId = async (req, res) =>{
+    console.log('hitting delete route');
+    console.log(req.params);
+    let response =  await User.deleteOne({ _id: req.params.id });
+    res.send(response)
 
-module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers} 
+}
+
+
+module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers, deleteUserbyId} 

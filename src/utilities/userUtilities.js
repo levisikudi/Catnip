@@ -59,3 +59,13 @@ export const getSingleUser = async (name) => {
 
     return finalData;
 }
+
+export const deleteUserbyId = async (id)  => {
+ console.log(id);
+    let serverResponse = await axios({
+        method:'DELETE',
+        url:`/user/deleteUser/${id}`})
+    console.log(serverResponse);
+
+    return serverResponse.data
+}
