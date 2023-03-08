@@ -17,7 +17,6 @@ initializePassport(
     },
 );
 
-
 const register = async (req, res)=>{
 
     console.log(req.body);
@@ -132,5 +131,8 @@ const deleteUserbyId = async (req, res) =>{
 
 }
 
+const updateUser = async (req, res) =>{
 
-module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers, deleteUserbyId} 
+}
+
+module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers, deleteUserbyId, updateUser} 

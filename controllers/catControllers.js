@@ -45,4 +45,12 @@ const getSingleCat = async (req, res)=>{
    
 }
 
-module.exports = { createCat, getAllCats, getSingleCat }
+const updateCat = async (req, res) =>{
+   console.log("hitting route");
+    let catId = {_id:`${req.params.catId}`}
+    let myData = req.body
+    let response = await Cat.findByIdAndUpdate(catId, myData, {new:true})
+console.log(response);   res.json({catId, body:response})
+}
+
+module.exports = { createCat, getAllCats, getSingleCat, updateCat }
