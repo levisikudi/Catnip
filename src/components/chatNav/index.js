@@ -17,6 +17,10 @@ const ChatNav = () => {
     if(search!== ''){
       let res = await getSingleUser(search)
       console.log(res);
+      if(res === undefined){
+        setChatUser({})
+        return;
+      }
       setChatUser(res)
       setLoading(true)
 
