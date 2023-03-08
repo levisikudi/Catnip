@@ -8,10 +8,10 @@
      gender:{
         type: String,
      },
-     picture:[{
+     picture:{
         type: String,
-        default: 'jjf'
-     }],
+        default: 'https://i.imgur.com/vVGSIyEb.jpg'
+     },
      breed: {
         type: String,
      },

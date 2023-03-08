@@ -20,6 +20,7 @@ const TopDrawer = () => {
         setResult(true)
 
       }
+      setResult(false)
 
   }
 

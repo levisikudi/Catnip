@@ -28,4 +28,14 @@ const createCat = async (req, res) =>{
     res.json("hitting the route")
 }
 
-module.exports = { createCat }
+const getAllCats = async (req, res)=>{
+    try {
+    const cat = await User.find({}).populate('cat').select('name')
+    res.json(cat);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send('Server Error');
+  }
+}
+
+module.exports = { createCat, getAllCats }

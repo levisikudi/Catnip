@@ -66,7 +66,7 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 app.use('/user', userRoutes)
 app.use('/cat', catRoutes)
-app.use('/chat', catRoutes)
+// app.use('/chat', chatRoutes)
 
 
 
