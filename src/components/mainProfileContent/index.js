@@ -5,6 +5,7 @@ import moment from 'moment';
 
 import './index.css'
 import { CatContext } from '../../context/catContext';
+import { updateCatById } from '../../utilities/functions';
 
 const ProfileContent = () => {
 
@@ -21,6 +22,7 @@ const ProfileContent = () => {
 
   
   let cat = user.cat
+  console.log(cat._id);
   const [pronoun, setPronoun] = useState(cat.gender == "Female"? "she": "he")
   const [posPronoun, setPosPronoun] = useState(cat.gender == "Female"? "Her": "His")
   const [catDisplay, setCatDisplay] = useState(true)
@@ -45,9 +47,66 @@ const ProfileContent = () => {
     e.preventDefault()
     console.log('button clicked');
     !editMode? setEditMode(true) : setEditMode(false)
+
+
+
+
     console.log(editMode);
   }
 
+
+  const postDetails = (photo) =>{
+    setLoading(true)
+    if(photo === undefined){
+      alert('Please Select an Image')
+      return;
+    }
+
+    if (photo.type === 'image/jpeg' || photo.type === 'image/png'){
+     const data = new FormData();
+     data.append('file', photo)
+     data.append('upload_preset','Catnip') 
+     data.append('cloud_name','dtvq6pgc4') 
+
+     fetch('https://api.cloudinary.com/v1_1/dtvq6pgc4/image/upload',{
+       method: 'POST',
+       body : data
+     }).then((res) => res.json())
+        .then(data => {
+          setPicture(data.url.toString())
+          console.log(data.url.toString());
+          setLoading(false)
+          console.log('photo posted');
+        })
+        .catch((err)=>{
+          console.log(err);
+          setLoading(false)
+        })
+    }else{
+      alert('File not supported, Please select valid image')
+      setLoading(false)
+    }
+  }
+
+  const handleCatUpdate = async (e) =>{
+    console.log('triggered upload');
+    let data = {
+      name, othername, gender, breed, dob, hypoallergenic, hobbies, picture
+    }
+
+    const cleanData = Object.entries(data)
+      .filter(([key, value]) => value !== undefined)
+      .reduce((obj, [key, value]) => {
+        obj[key] = value;
+        return obj;
+      }, {});
+      console.log(data);
+      console.log(cleanData);
+      let dataPack = [cleanData, cat._id]
+      console.log(dataPack);
+      let res = await updateCatById(dataPack)
+      console.log(res);
+  }
 
   
   return (
@@ -94,6 +153,19 @@ const ProfileContent = () => {
     
       <div>
         <img id='cat-image' src={cat.picture}/>
+        {editMode?
+        <div className="col-md-6">
+            <p>Update the image of your cat</p>
+            <input 
+            type="file" 
+            accept='image/*' 
+            className="form-control"
+            aria-label="Picture" 
+            onChange={(e)=>postDetails(e.target.files[0])} />
+        </div>
+        :
+        <></>
+        }
       </div>
 
 
@@ -212,9 +284,14 @@ const ProfileContent = () => {
         :
         <></>
         }
+
+
         {editMode?
         <div className='mt-4 text-end'>
-          <button className='btn btn-outline-success'> Update {cat.name}'s cat-formation</button>
+          <button 
+          className='btn btn-outline-success'
+          onClick={(e)=>handleCatUpdate(e)}
+          > Update {cat.name}'s cat-formation</button>
         </div>
       
         :
@@ -228,14 +305,14 @@ const ProfileContent = () => {
       <hr className='my-5 py-4'/>
 
       <div>
-        <p>
-          Owner : <span>{user.firstName} {user.surname}</span>
+        <div>
+          <p>Owner : <span>{user.firstName} {user.surname}</span></p>
           {editMode?
-          <div>Wait</div>
+          <p>Wait</p>
           :
           <></>
           }
-        </p>
+        </div>
 
         <div>
         <p>Where {user.firstName} resides: <span>{user.city}</span></p>

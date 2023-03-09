@@ -41,23 +41,35 @@ const getAllCats = async (req, res)=>{
 const getSingleCat = async (req, res)=>{
    console.log('hitting route');
    console.log(req.params);
-   let cat = await Cat.findOne({name:req.params.name})
+   try {
+      let cat = await Cat.findOne({name:req.params.name})
 
-   console.log(cat)
+   console.log({cat: cat})
    
    let user = await User.findOne({cat:cat._id})
    console.log(user)
 
    res.send({cat, user})
-
+   } catch (error) {
+      res.send('Cat not found')
+   }
+   
 }
 
 const updateCat = async (req, res) =>{
    console.log("hitting route");
-    let catId = {_id:`${req.params.catId}`}
-    let myData = req.body
-    let response = await Cat.findByIdAndUpdate(catId, myData, {new:true})
-console.log(response);   res.json({catId, body:response})
+   let catId = {_id:`${req.params.catId}`}
+   console.log(req.body);
+   console.log(catId);
+   let myData = req.body
+   try {
+      let response = await Cat.findByIdAndUpdate(catId, myData, {new:true})
+   console.log(response);   
+   res.json({catId, body:response})
+   } catch (error) {
+      console.log(error);
+   }
+   
 }
 
 module.exports = { createCat, getAllCats, getSingleCat, updateCat }

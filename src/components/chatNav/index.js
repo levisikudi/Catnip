@@ -52,7 +52,7 @@ const ChatNav = () => {
          <div className='d-flex justify-content-center'>
         <input
         type='search'
-        placeholder='Search by Name'
+        placeholder='Search by human'
         onChange={(e)=>setSearch(e.target.value)}
         />
         <button

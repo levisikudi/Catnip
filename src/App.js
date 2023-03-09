@@ -18,33 +18,33 @@ function App() {
 
   let nav = useNavigate()
 
-  //  useEffect(() => {
-  //     let autoLogin = async () => {
-  //       await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
-  //       // get session info (user)
-  //       let user = await getUserfromSession()
-  //       setUser(user);
-  //       nav('/user/dash')
-
-  //     }
-  //     autoLogin()
-
-      
-  //   }, [])
-
-    useEffect(() => {
-      let checkSession = async () => {
-       
+   useEffect(() => {
+      let autoLogin = async () => {
+        await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
         // get session info (user)
         let user = await getUserfromSession()
         setUser(user);
         nav('/user/dash')
 
       }
-      checkSession()
+      autoLogin()
 
       
     }, [])
+
+    // useEffect(() => {
+    //   let checkSession = async () => {
+       
+    //     // get session info (user)
+    //     let user = await getUserfromSession()
+    //     setUser(user);
+    //     nav('/user/dash')
+
+    //   }
+    //   checkSession()
+
+      
+    // }, [])
 
 
   
@@ -58,7 +58,7 @@ function App() {
          <Route path='/catform' element={<CatformPage />}/>
          <Route path='/user/dash' element={<Dashboard />}/>
          <Route path='/user/profile' element={<Profile />}/>
-         <Route path='/cats/profile' element={<CatProfile />}/>
+         <Route path='/cat/profile' element={<CatProfile />}/>
          <Route path='/chat' element={<Conversations />}/>
          <Route path='/' element={<LandingPage />}/>
          <Route path='/*' element={<Navigate to='/' />}/>
