@@ -44,7 +44,7 @@ const UserForm = () => {
   const handleSubmit = async (e) =>{
     setLoading()
      e.preventDefault();
-     if (!firstName || !surname || !email || !state || !password ){
+     if (!firstName || !email || !password ){
        alert('fill in all the required fields');
       }
 
@@ -116,22 +116,24 @@ const UserForm = () => {
     <form className="row g-3 w-75 mt-4 rounded">
         <div className="col-md-6">
             <label className="form-label">First Name</label>
-            <input type="text" className="form-control" onChange={(e)=>setFirstName(e.target.value)} aria-label="First name"/>
+            <input type="text" className="form-control" placeholder='Required'onChange={(e)=>setFirstName(e.target.value)} aria-label="First name" required/>
         </div>
         <div className="col-md-6">
             <label className="form-label">Last Name</label>
-          <input type="text" className="form-control" onChange={(e)=>setSurname(e.target.value)} aria-label="Last name"/>
+          <input type="text" className="form-control"placeholder='Required' onChange={(e)=>setSurname(e.target.value)} aria-label="Last name"/>
         </div>
         <div className="col-md-12">
           <label className="form-label">Email</label>
-          <input type="email" className="w-75 form-control" onChange={(e)=>setEmail(e.target.value)}/>
+          <input type="email" className="w-75 form-control" placeholder='Required' onChange={(e)=>setEmail(e.target.value)}/>
         </div>
         <div className="col-md-8">
           <label className="form-label">Password</label>
             <div className='input-group'>
-            <input type={show?"text":"password"} className="form-control" onChange={(e)=>setPassword(e.target.value)}/>
+            <input type={show?"text":"password"} placeholder='Required' className="form-control" onChange={(e)=>setPassword(e.target.value)}/>
               <button className="btn btn-light" type="button" onClick={handleShowClick}>{show? 'Hide':'Show'}</button>
             </div>
+              <div class="form-text text-warning">Password should be at least 6 characters.</div>
+
         </div>
         <div className="col-md-8">
           <label className="form-label">Confirm Password</label>

@@ -8,7 +8,6 @@
 
      surname: {
          type: String,
-         required: true
      },
 
      description: {

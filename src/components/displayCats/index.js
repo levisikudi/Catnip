@@ -47,7 +47,7 @@ const DisplayCats = () => {
                     <p className="card-text">{el.firstName}</p>
                     <button 
                     className="btn btn-outline-warning"
-                    onClick={setViewCat(el)}
+                    // onClick={setViewCat(el)}
                     disabled>See Profile</button>
                     </div>
                 </div>

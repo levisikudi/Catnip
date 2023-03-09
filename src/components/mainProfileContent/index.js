@@ -8,6 +8,7 @@ import { CatContext } from '../../context/catContext';
 import { updateCatById } from '../../utilities/functions';
 import UserProfile from '../userProfile';
 import { loginUser } from '../../utilities/userUtilities';
+import { useNavigate } from 'react-router-dom';
 
 const ProfileContent = () => {
 
@@ -29,6 +30,7 @@ const ProfileContent = () => {
   const [catDisplay, setCatDisplay] = useState(true)
   let birthday = moment.utc(cat.dob).format("MMM Do YY")
   const [editMode, setEditMode] = useState(false)
+  let navigate = useNavigate()
 
 
   const handleEditButton = (e) =>{
@@ -87,7 +89,7 @@ const ProfileContent = () => {
       console.log(dataPack);
       let res = await updateCatById(dataPack)
       console.log(res);
-
+      window.location.reload()
   }
 
   
