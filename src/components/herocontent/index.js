@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { loginUser } from '../../utilities/userUtilities'
+import { getUserfromSession, loginUser } from '../../utilities/userUtilities'
 
 
 const HeroContent = (props) => {
@@ -23,9 +23,6 @@ const HeroContent = (props) => {
       }
       
 
-      
-   
-  
 
   return (
     <>
