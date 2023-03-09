@@ -5,22 +5,18 @@ import './index.css'
 
 const Profile = () => {
 
+  // ...................UNDER CONSTRUCTION.......................
+
+
   const [editMode, setEditMode] = useState(false)
 
   return (
     <section id='main-profile'>
-     
-
-        <div id='sidebar' >
+    
         <ChatNav />
-        </div>
-
-        <div id='main-profile-content'>    
        
-          <ProfileContent />
-          
-        </div> 
-
+         <ProfileContent />
+     
     </section>
   )
 }

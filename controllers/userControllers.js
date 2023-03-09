@@ -102,7 +102,7 @@ const logout = async (req, res, next) =>{
 };
 
 const getuser = async (req, res) =>{
-    console.log();
+    console.log(req.session);
     res.json({session:req.session})
 };
 

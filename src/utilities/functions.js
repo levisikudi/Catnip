@@ -18,7 +18,7 @@ export const getAllCats = async () => {
 
     let serverResponse = await axios({
         method: 'GET',
-        url: `http://localhost:4000/cat/get_all_cats`
+        url: `/cat/get_all_cats`
     });
 
     return serverResponse;

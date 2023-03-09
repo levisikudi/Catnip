@@ -26,7 +26,7 @@ const UserProfile = (props) => {
       return;
     }
 
-    if (photo.type === 'image/jpeg' || photo.type === 'image/png'){
+    if (photo.type === 'image/jpeg' || photo.type === 'image/png' || photo.type === 'image/avif'){
      const data = new FormData();
      data.append('file', photo)
      data.append('upload_preset','Catnip') 

@@ -2,8 +2,9 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/authContexts'
-import { deleteUserbyId, getSingleUser } from '../../utilities/userUtilities'
+import {  getSingleUser } from '../../utilities/userUtilities'
 import ChatUserIcon from '../chatUserIcon'
+import './index.css'
 // import ChatUserList from '../ChatUserList'
 
 
@@ -33,40 +34,39 @@ const ChatNav = () => {
     setLoading(false)
   }
 
-  const handleDelete = async (e) =>{
-    e.preventDefault()
-    console.log(user._id);
-    let res = await deleteUserbyId(user._id)
-    
-    // console.log(res);
-    navigate('/user/dash')
-
-  }
+  
  
 
 
 
   return (
-    <div>
-      <div>
-         <div className='d-flex justify-content-center'>
-        <input
-        type='search'
-        placeholder='Search by human'
-        onChange={(e)=>setSearch(e.target.value)}
-        />
-        <button
-        onClick={(e)=>handleUserSearch(e)}>Search</button>
+    <div id='side-nav' className='container d-flex flex-column'>
+      <div className='row'>
+         <div id='input-field'className='col-12 align-items-start '>
+          
+            <div className='input-group my-2 mr-2'>
+              <input
+              type='search' className='form-control'
+              aria-describedby="button-addon3"
+              placeholder='Search by human'
+              onChange={(e)=>setSearch(e.target.value)}
+              />
+              <button
+              onClick={(e)=>handleUserSearch(e)}
+              id="button-addon3">Search</button>
+            </div>
+
+            {/* ......UNDER CONSTRUCTION...... */}
+        
+            {loading?<></>
+            // <p className='card-text placeholder-glow w-100'>
+            //   <span className="placeholder col-12" placeholder='People will apperar here'></span>
+            // </p>
+            :
+              <ChatUserIcon chatUser={chatUser}/>
+            }
+          
         </div>
-        {loading?
-        <p className='card-text placeholder-glow'>
-          <span className="placeholder col-12"></span>
-        </p>
-        :
-          <ChatUserIcon chatUser={chatUser}/>
-        }
-        <button
-        onClick={(e)=>handleDelete(e)}>Delete Account</button>
       </div>
     </div>
   )

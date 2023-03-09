@@ -6,6 +6,7 @@ const ProfileContextProvider = (props) => {
 
     const [singleCat, setSingleCat] = useState({})
     const [searchUser, setSearchUser] = useState({})
+    const [viewCat, setViewCat] = useState({})
 
     
 
@@ -14,7 +15,8 @@ const ProfileContextProvider = (props) => {
     return (
         <ProfileContext.Provider value={{
             singleCat, setSingleCat,
-            searchUser, setSearchUser
+            searchUser, setSearchUser,
+            viewCat, setViewCat,
             
         }}>
             {props.children}

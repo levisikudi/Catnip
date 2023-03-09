@@ -1,5 +1,7 @@
 import { set } from 'mongoose';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import { ProfileContext } from '../../context/profileContext';
 import { getAllCats } from '../../utilities/functions';
 import './index.css'
 
@@ -7,7 +9,7 @@ const DisplayCats = () => {
 
     const [cats, setcats] = useState([])
 
-    
+    let nav = useNavigate()
     
     const makeServerCall = async () => {
         let serverResponse = await getAllCats()
@@ -22,25 +24,33 @@ const DisplayCats = () => {
         makeServerCall()
     }, []);
 
+   const {setViewCat, viewCat} = useContext(ProfileContext)
+    
+//    const handleViewClick = () =>{
+//      setTimeout(() => {
+//         nav('/cat/display/profile')
+//      }, 500);
+//    }
+   
     let catSlideJSX = cats.map((el)=>{
-        <div className='carousel-item' >
-            <div id='active' className="carousel-item active d-flex justify-content-center"  >
-            <img 
-            src='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60' className="card-img-top d-block w-100"/>
-                <div className="card-body">
-                    <h1 className='display-4'>Welcome!</h1>  
-                </div>
-            </div>
-        </div>
+       
         if (el.cat){
             console.log(el);
             return(
-                 <div id='card' className='carousel-item' key={el._id}>
-                    <img className='img-fluid'src={el.cat.picture}  />
-                    <h1 className='display-4'>{el.cat.name}</h1>  
-                </div> 
                 
                 
+                
+                <div key={el._id} id='search-card'className="card">
+                    <img src={el.cat.picture} className="card-img-top" alt={el.cat.name}/>
+                    <div className="card-body">
+                    <h5 className="card-title">{el.cat.name}</h5>
+                    <p className="card-text">{el.firstName}</p>
+                    <button 
+                    className="btn btn-outline-warning"
+                    onClick={setViewCat(el)}
+                    disabled>See Profile</button>
+                    </div>
+                </div>
 
             )
         }
@@ -48,32 +58,10 @@ const DisplayCats = () => {
 
 
   return (
-  <div>
-    <div id="carouselExample" className="carousel slide">
-     <div className="carousel-inner">
-        <div className='carousel-item' >
-            <div id='active' className="carousel-item active d-flex justify-content-center"  >
-            <img 
-            src='https://images.unsplash.com/photo-1533738363-b7f9aef128ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8Y2F0fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60' className="carou-cat w-100"/>
-                <div className="card-body">
-                    <h1 className='display-4'>Welcome!</h1>  
-                </div>
-            </div>
-        </div>
-
-    {catSlideJSX}
-  </div>
-  <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Previous</span>
-  </button>
-  <button className="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-    <span className="visually-hidden">Next</span>
-  </button>
-</div>
-
-
+  <div className='container px-3'>
+    <div className='row gap-5'>
+        {catSlideJSX}
+    </div>
   </div>
   )
 }

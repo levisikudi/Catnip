@@ -1,3 +1,8 @@
-/* #single-cat-picture{
-    max-width: 25rem;
-} */
+#single-cat-picture{
+    max-width: 60vw;
+}
+
+
+#profile-container{
+    background-color: rgb(246, 176, 176);
+}

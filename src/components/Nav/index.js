@@ -2,7 +2,7 @@ import React, { useContext } from 'react'
 import { Link , useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
 import { AppContext } from '../../context/authContexts'
-import { getUserfromSession, logout } from '../../utilities/userUtilities'
+import { getUserfromSession, deleteUserbyId, logout } from '../../utilities/userUtilities'
 
 const Nav = () => {
 
@@ -21,6 +21,15 @@ const Nav = () => {
     Nav('/')
     
     
+
+  }
+  const handleDelete = async (e) =>{
+    e.preventDefault()
+    console.log(user._id);
+    let res = await deleteUserbyId(user._id)
+    
+    // console.log(res);
+    Nav('/user/dash')
 
   }
 
@@ -50,8 +59,9 @@ const Nav = () => {
                             <Link to ="/user/profile" className="nav-link">Profile</Link>
                         </li>
                         <li className="nav-item mx-4">
-                            <Link to ="/chat" className="nav-link">Chats</Link>
+                            <Link to ="/user/dash" className="nav-link">Chats</Link>
                         </li>
+                        
                         
                     </>
                     :
@@ -78,16 +88,33 @@ const Nav = () => {
                 }
                     {user?
                     <div>
-                        <button className="btn btn-success" onClick={(e)=>handleLogOut(e)}>Log Out
-                        </button>
+
+                        <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <Link to='/user/profile'>
+                            <img 
+                            id='avatar'
+                            className='img-fluid rounded-circle'
+                            src={user.picture}
+                            />
+                            </Link>
+                        </a>
+                        <ul class="dropdown-menu bg-dark p-3 ">
+                            
+                        <li>
+                            <button className="btn btn-success mb-3 text-bg-success rounded dropdown-item " onClick={(e)=>handleLogOut(e)}>Log Out
+                            </button>
+                        </li>
+                        <li>
+                             <button id='delete-btn' className=' dropdown-item rounded text-bg-danger btn text-bg-danger'
+                            onClick={(e)=>handleDelete(e)}>Delete Account
+                             </button>
+                         </li>
+                        </ul>
+                        </li>
+
                         
-                        <Link to='/user/profile'>
-                        <img 
-                        id='avatar'
-                        className='img-fluid rounded-circle'
-                        src={user.picture}
-                        />
-                        </Link>
+                        
                     </div>
                     :
                     <></>

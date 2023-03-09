@@ -5,6 +5,7 @@ import Nav from './components/Nav';
 import { AppContext } from './context/authContexts';
 import CatformPage from './pages/catformpage';
 import CatProfile from './pages/CatProfile';
+import OtherCatProfile from './pages/CatProfile2';
 import Conversations from './pages/Conversations';
 import Dashboard from './pages/Dashboard';
 import LandingPage from './pages/LandingPage';
@@ -18,33 +19,35 @@ function App() {
 
   let nav = useNavigate()
 
-   useEffect(() => {
-      let autoLogin = async () => {
-        await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
+  //  useEffect(() => {
+  //     let autoLogin = async () => {
+  //       await loginUser({email: "victorhamilton@gmail.com", password: "victorkimondo"});
+  //       // get session info (user)
+  //       let user = await getUserfromSession()
+  //       setUser(user);
+  //       nav('/user/dash')
+
+  //     }
+  //     autoLogin()
+
+      
+  //   }, [])
+
+    useEffect(() => {
+      let checkSession = async () => {
+       
         // get session info (user)
         let user = await getUserfromSession()
+        // await loginUser({email:user.email, password: user.password})
         setUser(user);
         nav('/user/dash')
 
       }
-      autoLogin()
+      checkSession()
+
 
       
     }, [])
-
-    // useEffect(() => {
-    //   let checkSession = async () => {
-       
-    //     // get session info (user)
-    //     let user = await getUserfromSession()
-    //     setUser(user);
-    //     nav('/user/dash')
-
-    //   }
-    //   checkSession()
-
-      
-    // }, [])
 
 
   
@@ -59,6 +62,7 @@ function App() {
          <Route path='/user/dash' element={<Dashboard />}/>
          <Route path='/user/profile' element={<Profile />}/>
          <Route path='/cat/profile' element={<CatProfile />}/>
+         <Route path='/cat/display/profile' element={<OtherCatProfile />}/>
          <Route path='/chat' element={<Conversations />}/>
          <Route path='/' element={<LandingPage />}/>
          <Route path='/*' element={<Navigate to='/' />}/>

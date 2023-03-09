@@ -30,7 +30,7 @@ const createCat = async (req, res) =>{
 
 const getAllCats = async (req, res)=>{
     try {
-    const cat = await User.find({}).populate('cat').select('name')
+    const cat = await User.find({}).populate('cat').select('cat')
     res.json(cat);
   } catch (err) {
     console.error(err.message);
@@ -42,7 +42,7 @@ const getSingleCat = async (req, res)=>{
    console.log('hitting route');
    console.log(req.params);
    try {
-      let cat = await Cat.findOne({name:req.params.name})
+   let cat = await Cat.findOne({name:req.params.name})
 
    console.log({cat: cat})
    

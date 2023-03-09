@@ -1,7 +1,19 @@
 #main-content{
-    min-height: 91vh;
+   padding: 2rem;
+
 }
 
 #cat-image{
     max-width: 40rem;
+}
+#edit-btn{
+    padding: .5rem 1rem;
+}
+
+div p{
+    font-weight: bold;
+}
+
+p span{
+    font-weight: 300;
 }

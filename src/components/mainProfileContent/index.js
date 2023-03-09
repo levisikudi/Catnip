@@ -7,6 +7,7 @@ import './index.css'
 import { CatContext } from '../../context/catContext';
 import { updateCatById } from '../../utilities/functions';
 import UserProfile from '../userProfile';
+import { loginUser } from '../../utilities/userUtilities';
 
 const ProfileContent = () => {
 
@@ -24,8 +25,7 @@ const ProfileContent = () => {
   
   let cat = user.cat
   // console.log(cat._id);
-  const [pronoun, setPronoun] = useState(cat.gender == "Female"? "she": "he")
-  const [posPronoun, setPosPronoun] = useState(cat.gender == "Female"? "Her": "His")
+  
   const [catDisplay, setCatDisplay] = useState(true)
   let birthday = moment.utc(cat.dob).format("MMM Do YY")
   const [editMode, setEditMode] = useState(false)
@@ -87,6 +87,7 @@ const ProfileContent = () => {
       console.log(dataPack);
       let res = await updateCatById(dataPack)
       console.log(res);
+
   }
 
   
@@ -95,17 +96,20 @@ const ProfileContent = () => {
       
       <div >
         <div className='d-flex justify-content-between'>
-          <h1>{cat.name}</h1>
-          <button 
-          className='btn btn-outline-success' 
-          onClick={(e)=>handleEditButton(e)}>Edit Profile
-        </button>
+          <h1 className='display-1'>{cat.name}</h1>
+          <span>
+            <button 
+            id='edit-btn'
+            className='btn btn-outline-success ' 
+            onClick={(e)=>handleEditButton(e)}>Edit Profile
+          </button>
+          </span>
        
           </div>
             {editMode? 
             <input 
             type="text" 
-            className="form-control" 
+            className="form-control w-50" 
             defaultValue={cat.name}
             onChange={(e)=>setName(e.target.value)} 
             aria-label="Name"
@@ -116,11 +120,11 @@ const ProfileContent = () => {
 
       {cat.othername?
       <div>
-        <p>Also known as {cat.othername}</p>
+        <p className='fst-italic fw-light'>Also known as {cat.othername}</p>
         {editMode? 
         <input 
           type="text" 
-          className="form-control" 
+          className="form-control w-50" 
           defaultValue={cat.othername}
           onChange={(e)=>setOthername(e.target.value)} 
           aria-label="Othername"
@@ -132,7 +136,7 @@ const ProfileContent = () => {
       <></>
       }
     
-      <div>
+      <div className='text-center'>
         <img id='cat-image' src={cat.picture}/>
         {editMode?
         <div className="col-md-6">
@@ -149,8 +153,8 @@ const ProfileContent = () => {
         }
       </div>
 
-
-      <div>
+  <div className='row py-3 '>
+      <div className='col-md-6'>
         <p>Gender: <span>{cat.gender}</span></p>
         {editMode?
         <div>
@@ -190,12 +194,12 @@ const ProfileContent = () => {
 
       </div>
 
-      <div>
+      <div className='col-md-6'>
         <p>Breed: <span>{cat.breed}</span></p>
         {editMode?
         <input 
             type='text' 
-            className="form-control"
+            className="form-control w-50"
             defaultValue={cat.breed} 
             onChange={(e)=>setBreed(e.target.value)}
             />
@@ -204,11 +208,11 @@ const ProfileContent = () => {
         }
       </div>
 
-        <div>
-          <p>When {pronoun} was born: <span>{birthday}</span></p>
+        <div className='col-md-6'>
+          <p>When {cat.name} was born: <span>{birthday}</span></p>
           {editMode? 
           <input 
-            className="form-control" 
+            className="form-control w-50" 
             type="date" 
             defaultValue={cat.dob}
             onChange={(e)=>setDob(e.target.value)} 
@@ -220,7 +224,7 @@ const ProfileContent = () => {
         </div>
       
       <div>
-       <p>What {pronoun} likes doing: <span>{cat.hobbies}</span></p>
+       <p>What {cat.name} likes doing: <span>{cat.hobbies}</span></p>
         {editMode? 
         <textarea 
             type='text-box' 
@@ -265,6 +269,7 @@ const ProfileContent = () => {
         :
         <></>
         }
+  </div>
 
 
         {editMode?
@@ -272,7 +277,7 @@ const ProfileContent = () => {
           <button 
           className='btn btn-outline-success'
           onClick={(e)=>handleCatUpdate(e)}
-          > Update {cat.name}'s cat-formation</button>
+          > Update {cat.name}'s 'cat'-formation</button>
         </div>
       
         :
