@@ -1,21 +1,33 @@
 import axios from 'axios'
 import { React, useEffect, useState, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../context/userContexts'
+import { AppContext } from '../../context/authContexts'
+import { UserContext } from '../../context/userContext'
 import { getUserfromSession, loginUser, signUp } from '../../utilities/userUtilities'
 import './index.css'
 
 const UserForm = () => {
   const [show, setshow] = useState(false)
+   
+  const { firstName, setFirstName,
+          surname, setSurname,
+          email, setEmail,
+          password, setPassword,
+          confirm, setConfirm,
+          city, setCity,
+          state, setState, 
+          picture, setPicture,} = useContext(UserContext)
 
-  const [firstName, setFirstName] = useState()
-  const [surname, setSurname] = useState()
-  const [email, setEmail] = useState()
-  const [password, setPassword] = useState()
-  const [confirm, setConfirm] = useState()
-  const [city, setCity] = useState()
-  const [state, setState] = useState()
-  const [picture, setPicture] = useState()
+  // const [firstName, setFirstName] = useState()
+  // const [surname, setSurname] = useState()
+  // const [email, setEmail] = useState()
+  // const [password, setPassword] = useState()
+  // const [confirm, setConfirm] = useState()
+  // const [city, setCity] = useState()
+  // const [state, setState] = useState()
+  // const [picture, setPicture] = useState()
+
+
   const [loading, setLoading] = useState(false)
 
   const {user, setUser} = useContext(AppContext)
@@ -41,16 +53,7 @@ const UserForm = () => {
       alert('Paswords not okay');
     }
     //Takes all states and places them in an object
-    let data = (
-      {
-        firstName,
-        surname,
-        email,
-        password,
-        city,
-        state,
-        picture
-      }
+    let data = ( { firstName, surname, email, password, city, state, picture }
 
     )
 

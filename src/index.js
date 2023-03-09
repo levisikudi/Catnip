@@ -4,23 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import ContextProvider from './context/userContexts';
+import ContextProvider from './context/authContexts';
 import ChatContextProvider from './context/chatContext';
 import CatContextProvider from './context/catContext';
 import ProfileContextProvider from './context/profileContext';
+import UserContextProvider from './context/userContext';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ProfileContextProvider>
-      <CatContextProvider>
-        <ContextProvider>
-          <Router>
-            <App />
-          </Router>
-        </ContextProvider>
-      </CatContextProvider>
+      <UserContextProvider>  
+        <CatContextProvider>
+          <ContextProvider>
+            <Router>
+              <App />
+            </Router>
+          </ContextProvider>
+        </CatContextProvider>
+      </UserContextProvider>
     </ProfileContextProvider>
   </React.StrictMode>
 );

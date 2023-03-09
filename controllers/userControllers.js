@@ -133,6 +133,21 @@ const deleteUserbyId = async (req, res) =>{
 
 const updateUser = async (req, res) =>{
 
+    console.log("hitting user route");
+   let userId = {_id:`${req.params.userId}`}
+   console.log(req.body);
+   console.log(userId);
+   res.json(req.body)
+   let myData = req.body
+   try {
+    let response = await User.findByIdAndUpdate(userId, myData, {new:true})
+   console.log(response);   
+   res.json({userId, body:response})
+   } catch (error) {
+      console.log(error);
+   }
+
+
 }
 
 module.exports = {register , login, getuser, logout, getSingleUser, getAllUsers, deleteUserbyId, updateUser} 

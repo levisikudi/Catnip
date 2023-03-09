@@ -18,7 +18,7 @@ router.post('/logout', logout)
 
 // ..............PUT ROUTES...............
 
-router.put('/updateById/:id', updateUser)
+router.put('/updateById/:userId', updateUser)
 
 
 

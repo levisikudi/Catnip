@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Link , useLocation, useNavigate } from 'react-router-dom'
 import './index.css'
-import { AppContext } from '../../context/userContexts'
+import { AppContext } from '../../context/authContexts'
 import { getUserfromSession, logout } from '../../utilities/userUtilities'
 
 const Nav = () => {
@@ -25,7 +25,7 @@ const Nav = () => {
   }
 
   return (
-    <nav id="navbar" className="navbar navbar-expand-md sticky-top navbar-dark bg-black  ">
+    <nav id="navbar" className="navbar w-100 navbar-expand-md sticky-top navbar-dark bg-black  ">
         <div className="container ">
             <div id='logo' 
             className="navbar-brand"

@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { Navigate, Routes, Route, useNavigate } from 'react-router-dom';
 import './App.css';
 import Nav from './components/Nav';
-import { AppContext } from './context/userContexts';
+import { AppContext } from './context/authContexts';
 import CatformPage from './pages/catformpage';
 import CatProfile from './pages/CatProfile';
 import Conversations from './pages/Conversations';

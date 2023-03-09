@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../context/userContexts'
+import { AppContext } from '../../context/authContexts'
 import { loginUser , getUserfromSession} from '../../utilities/userUtilities'
 import './index.css'
 

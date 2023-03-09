@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
-import { AppContext } from '../../context/userContexts'
+import { AppContext } from '../../context/authContexts'
 import DisplayCats from '../displayCats'
 import moment from 'moment';
 
 import './index.css'
 import { CatContext } from '../../context/catContext';
 import { updateCatById } from '../../utilities/functions';
+import UserProfile from '../userProfile';
 
 const ProfileContent = () => {
 
@@ -18,45 +19,28 @@ const ProfileContent = () => {
             hobbies, setHobbies,
             dob, setDob,
             picture, setPicture,
-            loading, setLoading,} = useContext(CatContext)
+            } = useContext(CatContext)
 
   
   let cat = user.cat
-  console.log(cat._id);
+  // console.log(cat._id);
   const [pronoun, setPronoun] = useState(cat.gender == "Female"? "she": "he")
   const [posPronoun, setPosPronoun] = useState(cat.gender == "Female"? "Her": "His")
   const [catDisplay, setCatDisplay] = useState(true)
   let birthday = moment.utc(cat.dob).format("MMM Do YY")
   const [editMode, setEditMode] = useState(false)
 
-  // .............STATES..............
-  // const [name, setName] = useState()
-  // const [othername, setOthername] = useState()
-  // const [gender, setGender] = useState()
-  // const [breed, setBreed] = useState()
-  // const [hypoallergenic, setHypoallergenic] = useState()
-  // const [hobbies, setHobbies] = useState()
-  // const [dob, setDob] = useState()
-  // const [picture, setPicture] = useState()
-
-  // const [loading, setLoading] = useState(false)
-
-  // .............END OF STATES..............
 
   const handleEditButton = (e) =>{
     e.preventDefault()
     console.log('button clicked');
     !editMode? setEditMode(true) : setEditMode(false)
 
-
-
-
     console.log(editMode);
   }
 
 
   const postDetails = (photo) =>{
-    setLoading(true)
     if(photo === undefined){
       alert('Please Select an Image')
       return;
@@ -75,16 +59,13 @@ const ProfileContent = () => {
         .then(data => {
           setPicture(data.url.toString())
           console.log(data.url.toString());
-          setLoading(false)
           console.log('photo posted');
         })
         .catch((err)=>{
           console.log(err);
-          setLoading(false)
         })
     }else{
       alert('File not supported, Please select valid image')
-      setLoading(false)
     }
   }
 
@@ -304,24 +285,7 @@ const ProfileContent = () => {
 
       <hr className='my-5 py-4'/>
 
-      <div>
-        <div>
-          <p>Owner : <span>{user.firstName} {user.surname}</span></p>
-          {editMode?
-          <p>Wait</p>
-          :
-          <></>
-          }
-        </div>
-
-        <div>
-        <p>Where {user.firstName} resides: <span>{user.city}</span></p>
-        {editMode? <input type='text' defaultValue={user.city}/>:<></> }
-      </div>
-
-      </div>
-
-      <hr/>
+        <UserProfile user={user} editMode={editMode}/>
     </div>
   )
 }

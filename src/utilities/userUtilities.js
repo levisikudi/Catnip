@@ -69,3 +69,17 @@ export const deleteUserbyId = async (id)  => {
 
     return serverResponse.data
 }
+
+export const updateById = async (dataPack) =>{
+
+    console.log(dataPack);
+
+    let serverResponse = await axios({
+            method: "PUT",
+            url: `/user/updateById/${dataPack[1]}`, // route to update user
+            data: dataPack[0]
+        });
+
+    return serverResponse;
+
+}

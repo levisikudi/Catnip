@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { AppContext } from '../../context/userContexts'
+import { AppContext } from '../../context/authContexts'
 import { deleteUserbyId, getSingleUser } from '../../utilities/userUtilities'
 import ChatUserIcon from '../chatUserIcon'
 // import ChatUserList from '../ChatUserList'
