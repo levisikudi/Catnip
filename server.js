@@ -3,6 +3,7 @@ const path = require('path')
 const logger = require('morgan')
 const userRoutes = require('./routes/userRoutes')
 const catRoutes = require('./routes/catRoutes')
+const chatRoutes = require('./routes/chatRoutes')
 
 // cross origin access 
 const cors = require('cors')
@@ -66,6 +67,7 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 app.use('/user', userRoutes)
 app.use('/cat', catRoutes)
+app.use('/chat', chatRoutes)
 // app.use('/chat', chatRoutes)
 
 

@@ -30,7 +30,7 @@ const createCat = async (req, res) =>{
 
 const getAllCats = async (req, res)=>{
     try {
-    const cat = await User.find({}).populate('cat').select('-password')
+    const cat = await User.find({}).find({_id: {$ne: req.session.passport.user._id}}).populate('cat').select('-password')
     res.json(cat);
   } catch (err) {
     console.error(err.message);
