@@ -27,7 +27,7 @@ router.get('/getuser', getuser)
 
 router.get('/getSingleUser/:firstName', getSingleUser)
 
-router.get('/get_all_users', getAllUsers)
+router.get('/getAllUsers', getAllUsers)
 
 
 

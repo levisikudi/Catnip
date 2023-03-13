@@ -28,7 +28,7 @@ export const getSingleCat = async (name) => {
 
     let serverResponse = await axios({
         method: 'GET',
-        url: `/cat/getSingleCat/${name}`
+        url: `/cat/getSingleCat?search=${name}`
     });
 
         return serverResponse;

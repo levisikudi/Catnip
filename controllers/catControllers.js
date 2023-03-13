@@ -30,19 +30,43 @@ const createCat = async (req, res) =>{
 
 const getAllCats = async (req, res)=>{
     try {
-    const cat = await User.find({}).populate('cat').select('cat')
+    const cat = await User.find({}).populate('cat').select('-password')
     res.json(cat);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 }
+//.............SEARCH WITH QUERY............
+// const getSingleCat = async (req, res)=>{
+//    console.log('hitting route');
+//    console.log(req.params);
+//    try {
+//    let cat = await Cat.findOne({name:req.params.name})
+
+//    console.log({cat: cat})
+   
+//    let user = await User.findOne({cat:cat._id})
+//    console.log(user)
+
+//    res.send({cat, user})
+//    } catch (error) {
+//       res.send('Cat not found')
+//    }
+   
+// }
+
 
 const getSingleCat = async (req, res)=>{
    console.log('hitting route');
-   console.log(req.params);
+   console.log(req.query.search);
+   let keyword = {$regex : req.query.search, $options : "i"}
+   console.log(keyword);
+
+
+
    try {
-   let cat = await Cat.findOne({name:req.params.name})
+   let cat = await Cat.findOne({name:keyword})
 
    console.log({cat: cat})
    

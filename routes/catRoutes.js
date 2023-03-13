@@ -11,7 +11,7 @@ router.put('/updateCatById/:catId', updateCat)
 
 router.get('/get_all_cats', getAllCats)
 
-router.get('/getSingleCat/:name', getSingleCat)
+router.get('/getSingleCat', getSingleCat)
 
 
 

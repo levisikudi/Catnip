@@ -26,11 +26,10 @@ const DisplayCats = () => {
 
    const {setViewCat, viewCat} = useContext(ProfileContext)
     
-//    const handleViewClick = () =>{
-//      setTimeout(() => {
-//         nav('/cat/display/profile')
-//      }, 500);
-//    }
+   const handleViewClick = (el) =>{
+    setViewCat(el)
+        nav('/cat/display/profile')
+   }
    
     let catSlideJSX = cats.map((el)=>{
        
@@ -47,8 +46,8 @@ const DisplayCats = () => {
                     <p className="card-text">{el.firstName}</p>
                     <button 
                     className="btn btn-outline-warning"
-                    // onClick={setViewCat(el)}
-                    disabled>See Profile</button>
+                    onClick={(e)=>handleViewClick(el)}
+                    >See Profile</button>
                     </div>
                 </div>
 

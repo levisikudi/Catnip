@@ -20,7 +20,7 @@ const TopDrawer = () => {
   const handleSearch = async (e) =>{
     e.preventDefault()
     console.log(search);
-    if (search !== '') {
+    if (!search || search !== '') {
         let res = await getSingleCat(search)
         console.log(res.data);
         setSingleCat(res.data.cat)
@@ -28,7 +28,7 @@ const TopDrawer = () => {
         setResult(true)
 
         
-      }
+      }else{setResult(false)}
   }
 
   const handleViewClick = (e) =>{

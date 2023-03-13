@@ -59,7 +59,7 @@ const Nav = () => {
                             <Link to ="/user/profile" className="nav-link">Profile</Link>
                         </li>
                         <li className="nav-item mx-4">
-                            <Link to ="/user/dash" className="nav-link">Chats</Link>
+                            <Link to ="/chat" className="nav-link">Chats</Link>
                         </li>
                         
                         
