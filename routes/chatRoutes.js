@@ -15,6 +15,7 @@ router.post('/groupChat', createGroupChat)
 
 //..................PUT ROUTES............................
 router.put('/renameGroup', renameGroupChat)
+
 router.put('/removeGroup', removeFromGroup)
 router.put('/addGroup', addToGroup)
 

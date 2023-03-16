@@ -1,3 +1,5 @@
 #main{
     min-height: 91vh;
+    display: grid;
+    grid-template-columns: 25fr 75fr;
 }

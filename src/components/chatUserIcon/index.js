@@ -1,15 +1,16 @@
 import React from 'react'
 import './index.css'
 
-const ChatUserIcon = (props) => {
+const ChatUserIcon = ({user, handleFunction}) => {
 
-    const {chatUser} = props
+   
+    console.log(user);
 
   return (
     <div className='container d-flex align-items-center'>
-        <img id='icon-image' className='img-fluid' src={chatUser.picture}/>
+        <img id='icon-image' className='img-fluid' src={user.picture}/>
         <div>
-            <p className='d-flex align-items-center'>{chatUser.firstName} {chatUser.surname}</p>
+            <p className='d-flex align-items-center'>{user.firstName} {user.surname}</p>
         </div>
     </div>
   )

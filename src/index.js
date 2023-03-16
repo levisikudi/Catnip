@@ -17,11 +17,13 @@ root.render(
     <ProfileContextProvider>
       <UserContextProvider>  
         <CatContextProvider>
-          <ContextProvider>
-            <Router>
-              <App />
-            </Router>
-          </ContextProvider>
+          <ChatContextProvider>  
+            <ContextProvider>
+              <Router>
+                <App />
+              </Router>
+            </ContextProvider>
+          </ChatContextProvider>
         </CatContextProvider>
       </UserContextProvider>
     </ProfileContextProvider>

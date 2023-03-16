@@ -13,21 +13,24 @@ const ChatNav = () => {
   let navigate = useNavigate()
 
   const [search, setSearch] = useState('')
-  const [chatUser, setChatUser] = useState({})
+  const [chatUser, setChatUser] = useState([])
 
   const [loading, setLoading] = useState(false)
 
   const handleUserSearch = async (e) =>{
     e.preventDefault()
+    setLoading(true)
     console.log(search);
-    if(search!== ''){
+    if(search != ''){
       let res = await getSingleUser(search)
       console.log(res);
+      setChatUser(res)
       if(res === undefined){
-        setChatUser({})
+        setChatUser([])
+        console.log(chatUser);
         return;
       }
-      setChatUser(res)
+      console.log(chatUser);
       setLoading(true)
 
     }
@@ -35,7 +38,11 @@ const ChatNav = () => {
   }
 
   
- 
+ const accessChat = (user._id) = {
+
+
+
+ }
 
 
 
@@ -58,12 +65,25 @@ const ChatNav = () => {
 
             {/* ......UNDER CONSTRUCTION...... */}
         
-            {loading?<></>
-            // <p className='card-text placeholder-glow w-100'>
-            //   <span className="placeholder col-12" placeholder='People will apperar here'></span>
-            // </p>
+            {loading?
+            <p className='card-text placeholder-glow w-100'>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+              <span className="placeholder col-12" placeholder='People will apperar here'></span>
+            </p>
             :
-              <ChatUserIcon chatUser={chatUser}/>
+            chatUser?.map(user =>(
+              <ChatUserIcon 
+              user={user} 
+              key={user._id}
+              handleFunction={()=>accessChat(user._id)}
+              
+              />
+            ))
+              
             }
           
         </div>

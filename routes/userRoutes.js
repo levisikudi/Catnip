@@ -25,7 +25,7 @@ router.put('/updateById/:userId', updateUser)
 // ..............GET ROUTES..............
 router.get('/getuser', getuser)
 
-router.get('/getSingleUser/:firstName', getSingleUser)
+router.get('/getSingleUser', getSingleUser)
 
 router.get('/getAllUsers', getAllUsers)
 

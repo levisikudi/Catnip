@@ -13,7 +13,7 @@ const Profile = () => {
   return (
     <section id='main-profile'>
     
-        <ChatNav />
+        {/* <ChatNav /> */}
        
          <ProfileContent />
      

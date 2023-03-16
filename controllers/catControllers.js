@@ -37,7 +37,7 @@ const getAllCats = async (req, res)=>{
     res.status(500).send('Server Error');
   }
 }
-//.............SEARCH WITH QUERY............
+//.............SEARCH WITH PARAM............
 // const getSingleCat = async (req, res)=>{
 //    console.log('hitting route');
 //    console.log(req.params);

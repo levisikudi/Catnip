@@ -1,4 +1,5 @@
 import React from 'react'
+import Chatbar from '../../components/Chatbar'
 import ChatNav from '../../components/chatNav'
 import MessageBox from '../../components/messageBox'
 // import { AppContext } from '../../context/userContexts'
@@ -9,8 +10,9 @@ const Conversations = () => {
   // const {user} = AppContext()
 // ................UNDER CONSTRUCTION....................
   return (
-    <div id="main" className='d-flex w-100 justify-content-between'>
+    <div id="main" >
       <ChatNav />
+      {/* <Chatbar/> */}
       <MessageBox />
     </div>
     

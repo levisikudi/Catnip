@@ -108,10 +108,27 @@ const getuser = async (req, res) =>{
 
 const getSingleUser = async (req, res) =>{
     console.log('hitting route');
-    console.log(req.params);
-    let response = await User.find({ firstName: req.params.firstName })
-    res.send(response)
+    console.log(req.query.search);
+    let keyword = req.query.search ? {
+        $or: [
+         { firstName: {$regex : req.query.search, $options : "i"}},
+         { surname: {$regex : req.query.search, $options : "i"}},
+         { email: {$regex : req.query.search, $options : "i"}}
+
+      ]  
+    }:{};
+    console.log(keyword);
+
+    const users = await User.find(keyword).populate('cat')
+    res.send(users)
+    
 }
+
+
+
+
+
+
 const getAllUsers = async (req, res) =>{
     try {
     const user = await User.find({}).select('firstName surname picture cat')

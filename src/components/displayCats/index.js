@@ -58,7 +58,7 @@ const DisplayCats = () => {
 
   return (
   <div className='container px-3'>
-    <div className='row gap-5'>
+    <div className='d-flex justify-context-around gap-5'>
         {catSlideJSX}
     </div>
   </div>

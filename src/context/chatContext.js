@@ -1,17 +1,17 @@
 import {useState, createContext} from 'react';
 
-export const ConversationContext = createContext();
+export const ChatContext = createContext();
 
 const ChatContextProvider = (props) => {
 
    
  
     return (
-        <ConversationContext.Provider value={{
+        <ChatContext.Provider value={{
 
         }}>
             {props.children}
-        </ConversationContext.Provider>
+        </ChatContext.Provider>
     )
 }
 
