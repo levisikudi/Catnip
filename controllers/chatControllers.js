@@ -48,6 +48,7 @@ const accessChat = async( req, res ) =>{
 }
 
 const getChat = async( req, res ) =>{
+    console.log('hitting fetching chat route');
     try {
        await Chat.find({users: {$elemMatch: { $eq: req.user._id}}})
        .populate("users", "-password -city -state -description" )

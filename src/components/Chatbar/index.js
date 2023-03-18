@@ -1,7 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { ChatContext } from '../../context/chatContext'
 import { AppContext } from '../../context/authContexts'
-import { getAllChats } from '../../utilities/chatUtilities'
+import { getAllChats, getSender } from '../../utilities/chatUtilities'
+import ChatList from '../ChatList'
 
 
 
@@ -19,10 +20,10 @@ const Chatbar = () => {
 
     try {
 
-      let data = getAllChats
-      setChats(data)  
+      let data = await getAllChats()
+      setChats(data.data)  
 
-      console.log(data);
+      console.log(chats);
 
     } catch (error) {
       
@@ -31,17 +32,44 @@ const Chatbar = () => {
   }
 
   useEffect(() => {
-    getAllChats()
+    getChats()
+    console.log(chats);
   
   }, [])
   
+  console.log(chats);
+
+ 
 
   return (
     <section className='container d-flex flex-column' >
       <div>
         <h1 className='display-6'>Chats</h1>
-        <div onClick={(e)=>handleClick(e)}>New Chat</div>
       </div>
+      <div className=' d-flex justify-content-between'>
+        <button className='btn btn-sm ' onClick={(e)=>handleClick(e)} >New Chat</button>
+        <button className='btn btn-sm ' >New Group Chat</button>
+      </div>
+        {chats?
+        chats.map((chat) =>(
+          <div
+          key={chat._id}
+          chat={chat} 
+          onClick={() => setSelectedChat(chat)}
+          className='border border-black'>
+            <div className='text p-2'>
+              {!chat.isGroupChat? getSender(user, chat.users): chat.chatName}
+            </div>
+          </div>
+          
+          
+        ))
+        
+        :
+        <></>
+        }
+
+
     </section>
   )
 }
