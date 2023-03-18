@@ -2,6 +2,8 @@ import axios from 'axios'
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AppContext } from '../../context/authContexts'
+import { ChatContext } from '../../context/chatContext'
+import { createChat } from '../../utilities/chatUtilities'
 import {  getSingleUser } from '../../utilities/userUtilities'
 import ChatUserIcon from '../chatUserIcon'
 import './index.css'
@@ -10,6 +12,8 @@ import './index.css'
 
 const ChatNav = () => {
   const {user} = useContext(AppContext)
+  const { selectedChat, setSelectedChat, chats, setChats, } = useContext(ChatContext)
+
   let navigate = useNavigate()
 
   const [search, setSearch] = useState('')
@@ -38,7 +42,16 @@ const ChatNav = () => {
   }
 
   
- const accessChat = (user._id) = {
+ const accessChat = async (userId) => {
+    try {
+      setLoading(true)
+      let chat = await createChat(userId)
+      console.log(chat);
+      setSelectedChat(chat)
+      setLoading(false)
+    } catch (error) {
+      console.log("Could not make the chat");
+    }
 
 
 
@@ -48,6 +61,7 @@ const ChatNav = () => {
 
   return (
     <div id='side-nav' className='container d-flex flex-column'>
+      <h1 className='display-4 text-center'>New Chats</h1>
       <div className='row'>
          <div id='input-field'className='col-12 align-items-start '>
           

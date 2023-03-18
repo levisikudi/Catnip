@@ -1,18 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Chatbar from '../../components/Chatbar'
 import ChatNav from '../../components/chatNav'
 import MessageBox from '../../components/messageBox'
-// import { AppContext } from '../../context/userContexts'
+import { ChatContext } from '../../context/chatContext'
 import './index.css'
 
 const Conversations = () => {
 
-  // const {user} = AppContext()
-// ................UNDER CONSTRUCTION....................
+  const {isChatSearch, setIsChatSearch} = useContext(ChatContext)
+  useEffect(() => {
+    setIsChatSearch(false)
+  }, [])
+  
+
+  // ................UNDER CONSTRUCTION....................
   return (
     <div id="main" >
-      <ChatNav />
-      {/* <Chatbar/> */}
+      {isChatSearch?
+        <ChatNav />
+      :
+        <Chatbar/>
+      }
       <MessageBox />
     </div>
     

@@ -18,15 +18,6 @@ const UserForm = () => {
           state, setState, 
           picture, setPicture,} = useContext(UserContext)
 
-  // const [firstName, setFirstName] = useState()
-  // const [surname, setSurname] = useState()
-  // const [email, setEmail] = useState()
-  // const [password, setPassword] = useState()
-  // const [confirm, setConfirm] = useState()
-  // const [city, setCity] = useState()
-  // const [state, setState] = useState()
-  // const [picture, setPicture] = useState()
-
 
   const [loading, setLoading] = useState(false)
 
