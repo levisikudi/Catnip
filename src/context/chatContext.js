@@ -5,7 +5,7 @@ export const ChatContext = createContext();
 const ChatContextProvider = (props) => {
 
    const [selectedChat, setSelectedChat] = useState()
-   const [chats, setChats] = useState()
+   const [chats, setChats] = useState([])
    const [isChatSearch, setIsChatSearch] = useState()// in production the state is true allow me to code the functionalities
  
     return (

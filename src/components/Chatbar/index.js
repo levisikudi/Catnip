@@ -1,16 +1,40 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ChatContext } from '../../context/chatContext'
+import { AppContext } from '../../context/authContexts'
+import { getAllChats } from '../../utilities/chatUtilities'
+
 
 
 const Chatbar = () => {
 
-  const {isChatSearch, setIsChatSearch} = useContext(ChatContext)
+  const {user} = useContext(AppContext)
+  const { selectedChat, setSelectedChat, chats, setChats, setIsChatSearch} = useContext(ChatContext)
 
   const handleClick = (e) =>{
     e.preventDefault()
     setIsChatSearch(true)
   }
+   
+  const getChats = async () =>{
 
+    try {
+
+      let data = getAllChats
+      setChats(data)  
+
+      console.log(data);
+
+    } catch (error) {
+      
+      console.log("Error fetching chats");
+    }
+  }
+
+  useEffect(() => {
+    getAllChats()
+  
+  }, [])
+  
 
   return (
     <section className='container d-flex flex-column' >

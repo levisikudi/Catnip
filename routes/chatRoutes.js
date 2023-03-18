@@ -10,7 +10,7 @@ router.get('/', getChat)
 
 
 //..................POST ROUTES............................
-router.post('/', accessChat)
+router.post('/:userId', accessChat)
 router.post('/groupChat', createGroupChat)
 
 //..................PUT ROUTES............................

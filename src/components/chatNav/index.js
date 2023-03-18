@@ -12,7 +12,7 @@ import './index.css'
 
 const ChatNav = () => {
   const {user} = useContext(AppContext)
-  const { selectedChat, setSelectedChat, chats, setChats, } = useContext(ChatContext)
+  const { selectedChat, setSelectedChat, chats, setChats, setIsChatSearch} = useContext(ChatContext)
 
   let navigate = useNavigate()
 
@@ -47,8 +47,14 @@ const ChatNav = () => {
       setLoading(true)
       let chat = await createChat(userId)
       console.log(chat);
+
+      if(!chats.find((convo)=>convo._id === chat._id)){
+        setChats([chat, ...chats])
+      }
+
       setSelectedChat(chat)
       setLoading(false)
+      setIsChatSearch(false)
     } catch (error) {
       console.log("Could not make the chat");
     }
@@ -76,8 +82,6 @@ const ChatNav = () => {
               onClick={(e)=>handleUserSearch(e)}
               id="button-addon3">Search</button>
             </div>
-
-            {/* ......UNDER CONSTRUCTION...... */}
         
             {loading?
             <p className='card-text placeholder-glow w-100'>

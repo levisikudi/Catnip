@@ -3,7 +3,9 @@ const Chat = require( "../models/chatModel")
 
 
 const accessChat = async( req, res ) =>{
-    const { userId } = req.body
+    const { userId } = req.params
+    console.log(req.params.userId);
+    console.log('hitting access chat route');
 
     if(!userId){
         console.log("Id not in request");
