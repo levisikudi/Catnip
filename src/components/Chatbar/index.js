@@ -2,7 +2,9 @@ import React, { useContext, useState, useEffect } from 'react'
 import { ChatContext } from '../../context/chatContext'
 import { AppContext } from '../../context/authContexts'
 import { getAllChats, getSender } from '../../utilities/chatUtilities'
+import './index.css'
 import ChatList from '../ChatList'
+import GroupChatModal from '../GroupChatModal'
 
 
 
@@ -42,14 +44,19 @@ const Chatbar = () => {
  
 
   return (
-    <section className='container d-flex flex-column' >
+    <section id='chatBar' className='container d-flex flex-column' >
       <div>
         <h1 className='display-6'>Chats</h1>
       </div>
+
       <div className=' d-flex justify-content-between'>
         <button className='btn btn-sm ' onClick={(e)=>handleClick(e)} >New Chat</button>
-        <button className='btn btn-sm ' >New Group Chat</button>
+
+        <GroupChatModal />
+
+
       </div>
+
         {chats?
         chats.map((chat) =>(
           <div
