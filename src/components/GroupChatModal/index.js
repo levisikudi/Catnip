@@ -4,6 +4,7 @@ import { ChatContext } from '../../context/chatContext'
 import { getSingleUser } from '../../utilities/userUtilities'
 import UserBadge from '../userBadge'
 import ChatUserIcon from '../chatUserIcon'
+import { createGroupChat } from '../../utilities/chatUtilities'
 
 const GroupChatModal = () => {
 
@@ -33,15 +34,33 @@ const GroupChatModal = () => {
         }
 
     }
-    const handleCreate = async () =>{
 
+    
+
+    const handleCreate = async () =>{
+        if (!groupChatName || !selectedUsers){
+            console.log("Fill in all fields to create a group chat");
+        }
+        try {
+            let data = await createGroupChat(selectedUsers, groupChatName)
+            console.log(data);
+
+            setChats([data, ...chats])
+            console.log("New GroupChat created");
+        } catch (error) {
+            console.log("Failed to create the GroupChat");
+        }
     }
+
+
     const handleDelete = (userToBeDeleted) =>{
        let data = selectedUsers.filter((selUser)=>{
         return selUser._id !== userToBeDeleted._id
        })
        setSelectedUsers(data)
     }
+
+
     const handleGroup = (newPerson) =>{
         if (selectedUsers.includes(newPerson)){
             return
@@ -97,7 +116,7 @@ const GroupChatModal = () => {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary"
-                onClick={handleCreate()}>Create Party</button>
+                onClick={handleCreate}>Create Party</button>
               </div>
             </div>
           </div>

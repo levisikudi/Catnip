@@ -73,10 +73,14 @@ const getChat = async( req, res ) =>{
 } 
 
 const createGroupChat = async (req, res ) =>{
-    if (req.body.users || req.body.name ){
+    console.log("hitting group chat creation route");
+    console.log(req.body);
+    if (!req.body.users || !req.body.name ){
         return res.send({message: "Please fill in all the fields"})
     }
-    let users = JSON.parse(req.body.users)
+    console.log("Check point A");
+    let users = req.body.users
+    console.log("Check point B");
     
     if (users.length < 2){
         return res.send("More than 2 users required to form a Group Chat")
@@ -95,6 +99,7 @@ const createGroupChat = async (req, res ) =>{
         .populate("groupAdmin", "-password -city -state -description" )
 
         res.json(entireGroupChat)
+        console.log("completed group chat creation");
 
 
     } catch (error) {

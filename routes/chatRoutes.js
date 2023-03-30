@@ -10,8 +10,8 @@ router.get('/', getChat)
 
 
 //..................POST ROUTES............................
-router.post('/:userId', accessChat)
 router.post('/groupChat', createGroupChat)
+router.post('/:userId', accessChat)
 
 //..................PUT ROUTES............................
 router.put('/renameGroup', renameGroupChat)
